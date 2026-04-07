@@ -20,7 +20,6 @@
         --white: #ffffff;
         --grey: #f8f9fa;
         --glass: rgba(255, 255, 255, 0.98);
-        --glass-dark: rgba(10, 25, 47, 0.9);
         --transition: cubic-bezier(0.165, 0.84, 0.44, 1);
         --premium-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
       }
@@ -52,51 +51,116 @@
         list-style: none;
       }
 
-      /* --- 2. THE 140PX DYNAMIC TRANSPARENT NAVBAR --- */
-      .navbar {
-        position: fixed;
+      /* --- 2. ALWAYS-STICKY PREMIUM TOP BAR --- */
+      .top-bar {
+        position: fixed; /* Permanently locked to the top */
         top: 0;
         left: 0;
         width: 100%;
-        height: 140px;
-        background: transparent;
-        border-bottom: 1px solid transparent;
-        z-index: 1000;
+        height: 45px;
+        background: var(--navy);
+        color: rgba(255, 255, 255, 0.8);
         display: flex;
         justify-content: space-between;
         align-items: center;
         padding: 0 60px;
-        transition: height 0.5s var(--transition), background 0.5s ease,
-          backdrop-filter 0.5s ease, box-shadow 0.5s ease;
-        animation: navLoad 1s var(--premium-ease) forwards;
+        font-family: "Montserrat", sans-serif;
+        font-size: 0.75rem;
+        font-weight: 500;
+        letter-spacing: 1.5px;
+        z-index: 1002;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .top-bar-contact {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .top-bar-contact a {
+        color: rgba(255, 255, 255, 0.8);
+        transition: color 0.3s;
+      }
+      .top-bar-contact a:hover {
+        color: var(--cyan);
+      }
+
+      .top-bar-socials {
+        display: flex;
+        gap: 25px;
+        align-items: center;
+      }
+      .top-bar-socials a {
+        color: rgba(255, 255, 255, 0.8);
+        transition: color 0.3s;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .top-bar-socials a:hover {
+        color: var(--cyan);
+      }
+
+      /* Language Switcher */
+      .lang-switcher {
+        display: flex;
+        align-items: center;
+        border-left: 1px solid rgba(255, 255, 255, 0.2);
+        padding-left: 25px;
+        margin-left: 5px;
+      }
+
+      /* --- 3. DYNAMIC DARK-GLASS NAVBAR --- */
+      .navbar {
+        position: fixed;
+        top: 45px; /* Locked permanently directly below the top bar */
+        left: 0;
+        width: 100%;
+        height: 120px;
+        /* The Dark, Semi-Translucent Overlay */
+        background: rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(1.5px);
+        -webkit-backdrop-filter: blur(15px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        z-index: 1001;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 60px;
+        transition: height 0.4s var(--transition), background 0.4s ease,
+          backdrop-filter 0.4s ease, box-shadow 0.4s ease;
       }
 
       .navbar.scrolled {
-        height: 100px;
-        background: var(--glass);
+        height: 90px;
+        background: var(--glass); /* Shifts to bright white glass */
         backdrop-filter: blur(25px);
         -webkit-backdrop-filter: blur(25px);
         border-bottom: 1px solid rgba(0, 0, 0, 0.05);
         box-shadow: 0 10px 40px rgba(10, 25, 47, 0.05);
       }
 
+      /* Logo handling for dark background readability */
+      /* Logo handling: White by default, Original on scroll */
       .logo img {
         width: 150px;
         height: auto;
         display: block;
+        transition: width 0.5s ease, filter 0.5s ease;
+        /* ADD THESE TWO LINES */
         filter: brightness(0) invert(1);
-        transition: filter 0.5s ease, width 0.5s ease;
+        opacity: 1;
       }
+
+      /* Revert to original colors when scrolled */
       .navbar.scrolled .logo img {
-        filter: none;
         width: 135px;
+        filter: none; /* This brings the blue back when bg is white */
       }
 
       .nav-links {
         display: flex;
         gap: 45px;
       }
-
       .nav-links a {
         color: var(--white);
         font-family: "Montserrat", sans-serif;
@@ -111,7 +175,6 @@
         color: var(--navy);
         opacity: 0.75;
       }
-
       .nav-links a:hover {
         color: var(--cyan);
         opacity: 1;
@@ -136,7 +199,6 @@
         align-items: center;
         z-index: 1;
       }
-
       .btn-cyan::after {
         content: "";
         position: absolute;
@@ -167,7 +229,7 @@
         color: var(--white);
       }
 
-      /* --- 3. CINEMATIC KEN BURNS HERO --- */
+      /* --- 4. CINEMATIC KEN BURNS HERO --- */
       .hero-cinematic {
         position: relative;
         height: 100vh;
@@ -177,8 +239,6 @@
         display: flex;
         align-items: flex-end;
       }
-
-      /* Background Image Loop */
       .bg-slider {
         position: absolute;
         inset: 0;
@@ -202,25 +262,25 @@
         transform: scale(1.08);
       }
 
-      /* THICKER, DARKER BLACK OVERLAY */
+      /* DARK HERO OVERLAY */
       .hero-overlay {
         position: absolute;
         inset: 0;
         z-index: 2;
         background: linear-gradient(
           to top,
-          rgba(0, 0, 0, 0.95) 0%,
-          rgba(0, 0, 0, 0.75) 50%,
-          rgba(0, 0, 0, 0.7) 100%
+          rgba(0, 0, 0, 0.98) 0%,
+          rgba(0, 0, 0, 0.85) 45%,
+          rgba(0, 0, 0, 0.5) 100%
         );
       }
 
-      /* Staggered Mask Reveal Typography */
+      /* Typography */
       .hero-plaque {
         position: relative;
         z-index: 10;
         padding: 80px 60px;
-        max-width: 800px;
+        max-width: 850px;
         width: 100%;
       }
       .mask {
@@ -267,7 +327,7 @@
         color: rgba(255, 255, 255, 0.7);
         line-height: 1.7;
         margin-bottom: 35px;
-        max-width: 500px;
+        max-width: 600px;
       }
 
       @keyframes maskReveal {
@@ -281,7 +341,7 @@
         }
       }
 
-      /* --- 4. AUTHORITY MARQUEE --- */
+      /* --- 5. AUTHORITY MARQUEE --- */
       .authority-marquee {
         background: var(--navy);
         padding: 20px 0;
@@ -319,7 +379,7 @@
         }
       }
 
-      /* --- 5. ADVANCED BEFORE/AFTER SLIDER --- */
+      /* --- 6. ADVANCED BEFORE/AFTER SLIDER --- */
       .transformation-section {
         padding: 150px 0;
         background: var(--white);
@@ -405,7 +465,7 @@
         cursor: ew-resize;
       }
 
-      /* --- 6. HOVER-REVEAL FILMSTRIP GALLERY --- */
+      /* --- 7. HOVER-REVEAL FILMSTRIP GALLERY --- */
       .filmstrip-section {
         padding: 120px 0;
         background: var(--navy);
@@ -462,7 +522,6 @@
       .film-item:hover img {
         transform: scale(1.05);
       }
-
       .film-caption {
         position: absolute;
         bottom: 30px;
@@ -480,7 +539,7 @@
         font-size: 0.85rem;
       }
 
-      /* --- 7. THE MASTERCLASS POSTER TRACK (3D PARALLAX) --- */
+      /* --- 8. THE MASTERCLASS POSTER TRACK (3D PARALLAX) --- */
       .posters-section {
         padding: 150px 0;
         background: var(--grey);
@@ -536,7 +595,6 @@
         z-index: 10;
         box-shadow: 0 30px 60px rgba(0, 174, 239, 0.15);
       }
-
       .poster-label {
         position: absolute;
         bottom: 20px;
@@ -558,7 +616,7 @@
         transform: translateY(0);
       }
 
-      /* --- 8. MEGA FOOTER --- */
+      /* --- 9. MEGA FOOTER --- */
       footer {
         background: var(--navy);
         padding: 120px 40px 40px;
@@ -629,6 +687,17 @@
 
       /* --- RESPONSIVE --- */
       @media (max-width: 1024px) {
+        .top-bar {
+          padding: 0 20px;
+        }
+        /* Hides names on mobile so it fits, keeps icons and language switcher */
+        .top-bar-socials span {
+          display: none;
+        }
+        .lang-switcher span {
+          display: inline-block;
+        }
+
         .navbar {
           height: 100px;
           padding: 0 20px;
@@ -668,6 +737,92 @@
     </style>
   </head>
   <body>
+    <div class="top-bar">
+      <div class="top-bar-contact">
+        <svg
+          width="14"
+          height="14"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path
+            d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+          ></path>
+        </svg>
+        <a href="tel:+201013333983">+20 101 333 3983</a>
+      </div>
+
+      <div class="top-bar-socials">
+        <a
+          href="https://www.facebook.com/share/18cyUYgFRZ/?mibextid=wwXIfr"
+          target="_blank"
+          aria-label="Facebook"
+        >
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
+            ></path>
+          </svg>
+          <span>Facebook</span>
+        </a>
+        <a
+          href="https://www.instagram.com/dr.sabry.dentist?igsh=MzMzMjI4ZmVnY29w"
+          target="_blank"
+          aria-label="Instagram"
+        >
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+          </svg>
+          <span>Instagram</span>
+        </a>
+        <div class="lang-switcher">
+          <a href="#">
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="2" y1="12" x2="22" y2="12"></line>
+              <path
+                d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
+              ></path>
+            </svg>
+            <span>العربية</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
     <nav class="navbar" id="navbar">
       <a href="#" class="logo">
         <img
@@ -688,7 +843,9 @@
       <div class="bg-slider" id="bgSlider">
         <div
           class="bg-slide active"
-          style="background-image: url('images-doctor/1.png')"
+          style="
+            background-image: url('https://raw.githubusercontent.com/zeyadabdulfattah/Sabry-Dental/main/images-doctor/1.png');
+          "
         ></div>
         <div
           class="bg-slide"
@@ -741,9 +898,10 @@
         </div>
         <div class="mask">
           <p class="mask-text delay-3">
-            More than a clinic—a sanctuary of clinical excellence. Blending
-            intense academic rigor with surgical precision to deliver
-            bio-integrated zirconia restorations built for a lifetime.
+            MSc. in Prosthodontics and founder of the Implant Zone Academy. Dr.
+            Sabry merges profound academic expertise with elite surgical
+            precision, specializing in full-jaw reconstructions and
+            master-crafted zirconia prosthodontics.
           </p>
         </div>
         <div class="mask">
@@ -1000,7 +1158,8 @@
       // 1. DYNAMIC NAVBAR SCROLL TRIGGER
       window.addEventListener("scroll", () => {
         const header = document.getElementById("navbar");
-        if (window.scrollY > 80) {
+        // Triggers color-shift and solid glass background after scrolling past the top-bar (45px)
+        if (window.scrollY > 45) {
           header.classList.add("scrolled");
         } else {
           header.classList.remove("scrolled");
