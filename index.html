@@ -53,7 +53,7 @@
 
       /* --- 2. ALWAYS-STICKY PREMIUM TOP BAR --- */
       .top-bar {
-        position: fixed; /* Permanently locked to the top */
+        position: fixed;
         top: 0;
         left: 0;
         width: 100%;
@@ -79,9 +79,16 @@
       .top-bar-contact a {
         color: rgba(255, 255, 255, 0.8);
         transition: color 0.3s;
+        display: flex;
+        align-items: center;
+        gap: 6px;
       }
       .top-bar-contact a:hover {
         color: var(--cyan);
+      }
+      .top-bar-contact .divider {
+        margin: 0 15px;
+        opacity: 0.3;
       }
 
       .top-bar-socials {
@@ -99,8 +106,6 @@
       .top-bar-socials a:hover {
         color: var(--cyan);
       }
-
-      /* Language Switcher */
       .lang-switcher {
         display: flex;
         align-items: center;
@@ -112,11 +117,10 @@
       /* --- 3. DYNAMIC DARK-GLASS NAVBAR --- */
       .navbar {
         position: fixed;
-        top: 45px; /* Locked permanently directly below the top bar */
+        top: 45px;
         left: 0;
         width: 100%;
         height: 120px;
-        /* The Dark, Semi-Translucent Overlay */
         background: rgba(0, 0, 0, 0.4);
         backdrop-filter: blur(1.5px);
         -webkit-backdrop-filter: blur(15px);
@@ -129,32 +133,25 @@
         transition: height 0.4s var(--transition), background 0.4s ease,
           backdrop-filter 0.4s ease, box-shadow 0.4s ease;
       }
-
       .navbar.scrolled {
         height: 90px;
-        background: var(--glass); /* Shifts to bright white glass */
+        background: var(--glass);
         backdrop-filter: blur(25px);
         -webkit-backdrop-filter: blur(25px);
         border-bottom: 1px solid rgba(0, 0, 0, 0.05);
         box-shadow: 0 10px 40px rgba(10, 25, 47, 0.05);
       }
-
-      /* Logo handling for dark background readability */
-      /* Logo handling: White by default, Original on scroll */
       .logo img {
         width: 150px;
         height: auto;
         display: block;
         transition: width 0.5s ease, filter 0.5s ease;
-        /* ADD THESE TWO LINES */
         filter: brightness(0) invert(1);
         opacity: 1;
       }
-
-      /* Revert to original colors when scrolled */
       .navbar.scrolled .logo img {
         width: 135px;
-        filter: none; /* This brings the blue back when bg is white */
+        filter: none;
       }
 
       .nav-links {
@@ -217,7 +214,6 @@
       .btn-cyan:hover::after {
         height: 100%;
       }
-
       .navbar.scrolled .btn-cyan {
         color: var(--cyan);
         border-color: var(--cyan);
@@ -261,8 +257,6 @@
         opacity: 1;
         transform: scale(1.08);
       }
-
-      /* DARK HERO OVERLAY */
       .hero-overlay {
         position: absolute;
         inset: 0;
@@ -275,7 +269,6 @@
         );
       }
 
-      /* Typography */
       .hero-plaque {
         position: relative;
         z-index: 10;
@@ -305,7 +298,6 @@
       .delay-btn {
         animation-delay: 1s;
       }
-
       .hero-plaque .eyebrow {
         color: var(--cyan);
         font-family: "Outfit", sans-serif;
@@ -329,7 +321,6 @@
         margin-bottom: 35px;
         max-width: 600px;
       }
-
       @keyframes maskReveal {
         0% {
           transform: translateY(110%);
@@ -379,9 +370,17 @@
         }
       }
 
+      /* --- GLOBAL SECTION CTA --- */
+      .section-end-cta {
+        display: flex;
+        justify-content: center;
+        margin-top: 60px;
+        padding-bottom: 20px;
+      }
+
       /* --- 6. ADVANCED BEFORE/AFTER SLIDER --- */
       .transformation-section {
-        padding: 150px 0;
+        padding: 150px 0 80px;
         background: var(--white);
       }
       .container {
@@ -391,6 +390,7 @@
       }
       .section-header {
         margin-bottom: 80px;
+        text-align: center;
       }
       .section-header h2 {
         font-size: clamp(3rem, 5vw, 4.5rem);
@@ -401,7 +401,6 @@
       .section-header h2 span {
         color: var(--cyan);
       }
-
       .ba-container {
         position: relative;
         width: 100%;
@@ -447,7 +446,6 @@
         height: 40px;
         background: var(--cyan);
         color: white;
-        border-radius: 0;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -465,42 +463,131 @@
         cursor: ew-resize;
       }
 
-      /* --- 7. HOVER-REVEAL FILMSTRIP GALLERY --- */
-      .filmstrip-section {
-        padding: 120px 0;
+      /* --- 7. THE ARCHITECTURAL SIGNATURE (SVG KINETIC TRACE) --- */
+      .signature-section {
         background: var(--navy);
         color: var(--white);
+        padding: 160px 0;
+        overflow: hidden;
+        position: relative;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+      }
+      .signature-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        align-items: center;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 40px;
+      }
+      .signature-visual {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+      }
+      /* The pure SVG implementation */
+      .ms-drawn-svg {
+        width: 100%;
+        max-width: 600px;
+        overflow: visible;
+        filter: drop-shadow(0 0 30px rgba(0, 174, 239, 0.15));
+      }
+      .ms-drawn-svg text {
+        font-family: "Outfit", sans-serif;
+        font-size: 220px;
+        font-weight: 900;
+        fill: transparent;
+      }
+      .ms-stroke-base {
+        stroke: rgba(255, 255, 255, 0.05);
+        stroke-width: 2px;
+      }
+      .ms-stroke-anim {
+        stroke: var(--cyan);
+        stroke-width: 4px;
+        /* Massive dash array to ensure it covers the entire path of the giant letterforms */
+        stroke-dasharray: 2500;
+        stroke-dashoffset: 2500;
+        animation: traceLetter 4s cubic-bezier(0.2, 0.8, 0.2, 1) infinite
+          alternate;
+      }
+
+      @keyframes traceLetter {
+        0% {
+          stroke-dashoffset: 2500;
+          fill: transparent;
+        }
+        70% {
+          stroke-dashoffset: 0;
+          fill: transparent;
+        }
+        100% {
+          stroke-dashoffset: 0;
+          fill: rgba(0, 174, 239, 0.05);
+        }
+      }
+
+      .signature-content .eyebrow {
+        color: var(--cyan);
+        font-family: "Outfit", sans-serif;
+        font-size: 0.9rem;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+      }
+      .signature-content h2 {
+        font-size: clamp(2.5rem, 4vw, 4.5rem);
+        line-height: 1.1;
+        margin-bottom: 30px;
+        letter-spacing: -1.5px;
+      }
+      .signature-content .marketing-text {
+        font-size: 1.1rem;
+        color: rgba(255, 255, 255, 0.7);
+        line-height: 1.8;
+        max-width: 500px;
+        margin-bottom: 40px;
+      }
+
+      /* --- 8. HOVER-REVEAL FILMSTRIP GALLERY (INFINITE) --- */
+      .filmstrip-section {
+        padding: 120px 0 80px;
+        background: var(--grey);
+        color: var(--navy);
         overflow: hidden;
       }
       .filmstrip-section .section-header h2 {
-        color: var(--white);
+        color: var(--navy);
+      }
+      .filmstrip-viewport {
+        width: 100%;
+        overflow: hidden;
+        padding: 40px 0;
+        cursor: grab;
+      }
+      .filmstrip-viewport:active {
+        cursor: grabbing;
       }
       .filmstrip-track {
         display: flex;
         gap: 30px;
-        padding: 0 40px 60px 40px;
-        overflow-x: auto;
-        cursor: grab;
-        scroll-snap-type: x mandatory;
-        scrollbar-width: none;
+        width: max-content;
+        will-change: transform;
       }
-      .filmstrip-track::-webkit-scrollbar {
-        display: none;
-      }
-      .filmstrip-track:active {
-        cursor: grabbing;
-      }
-
       .film-item {
         min-width: 45vw;
         max-width: 600px;
         height: 500px;
-        scroll-snap-align: center;
         border-radius: 0;
         overflow: hidden;
         position: relative;
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
         transition: transform 0.6s var(--transition);
+        user-select: none;
+        -webkit-user-drag: none;
       }
       .img-after,
       .img-before {
@@ -511,6 +598,7 @@
         height: 100%;
         object-fit: cover;
         transition: opacity 0.6s ease, transform 0.8s ease;
+        pointer-events: none;
       }
       .img-before {
         opacity: 0;
@@ -529,7 +617,6 @@
         background: var(--glass-dark);
         color: var(--white);
         padding: 12px 25px;
-        border-radius: 0;
         font-family: "Outfit", sans-serif;
         font-weight: 700;
         backdrop-filter: blur(10px);
@@ -537,70 +624,68 @@
         text-transform: uppercase;
         letter-spacing: 1px;
         font-size: 0.85rem;
+        pointer-events: none;
       }
 
-      /* --- 8. THE MASTERCLASS POSTER TRACK (3D PARALLAX) --- */
+      /* --- 9. THE MASTERCLASS POSTER TRACK (INFINITE 3D PARALLAX) --- */
       .posters-section {
-        padding: 150px 0;
-        background: var(--grey);
+        padding: 150px 0 80px;
+        background: var(--navy);
         overflow: hidden;
+        color: var(--white);
       }
-      .posters-section .section-header {
-        text-align: center;
+      .posters-section .section-header h2 {
+        color: var(--white);
       }
-      .poster-track-wrapper {
+      .posters-section .section-header p {
+        color: rgba(255, 255, 255, 0.7) !important;
+      }
+      .posters-viewport {
         width: 100%;
+        overflow: hidden;
         padding: 40px 0;
-        display: flex;
-        gap: 40px;
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
         cursor: grab;
-        scrollbar-width: none;
         perspective: 1000px;
       }
-      .poster-track-wrapper::-webkit-scrollbar {
-        display: none;
-      }
-      .poster-track-wrapper:active {
+      .posters-viewport:active {
         cursor: grabbing;
       }
-
+      .poster-track-wrapper {
+        display: flex;
+        gap: 40px;
+        width: max-content;
+        will-change: transform;
+      }
       .poster-item {
         min-width: 350px;
         height: 500px;
-        scroll-snap-align: center;
         position: relative;
-        border-radius: 0;
         overflow: hidden;
         transform: rotateY(15deg) scale(0.9);
         filter: grayscale(80%) brightness(0.6);
         transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
-        box-shadow: -20px 20px 40px rgba(0, 0, 0, 0.15);
-      }
-      .poster-item:first-child {
-        margin-left: 5vw;
-      }
-      .poster-item:last-child {
-        margin-right: 5vw;
+        box-shadow: -20px 20px 40px rgba(0, 0, 0, 0.5);
+        user-select: none;
+        -webkit-user-drag: none;
       }
       .poster-item img {
         width: 100%;
         height: 100%;
         object-fit: cover;
+        pointer-events: none;
       }
       .poster-item:hover {
         transform: rotateY(0deg) scale(1.05);
         filter: grayscale(0%) brightness(1);
         z-index: 10;
-        box-shadow: 0 30px 60px rgba(0, 174, 239, 0.15);
+        box-shadow: 0 30px 60px rgba(0, 174, 239, 0.3);
       }
       .poster-label {
         position: absolute;
         bottom: 20px;
         right: 20px;
-        background: var(--navy);
-        color: var(--cyan);
+        background: var(--white);
+        color: var(--navy);
         padding: 8px 20px;
         font-weight: 700;
         text-transform: uppercase;
@@ -610,18 +695,87 @@
         opacity: 0;
         transform: translateY(10px);
         transition: all 0.4s ease;
+        pointer-events: none;
       }
       .poster-item:hover .poster-label {
         opacity: 1;
         transform: translateY(0);
       }
 
-      /* --- 9. MEGA FOOTER --- */
+      /* --- 10. TIDYCAL BOOKING SECTION --- */
+      .booking-section {
+        padding: 150px 0;
+        background: var(--white);
+        text-align: center;
+      }
+      .tidycal-container {
+        max-width: 1000px;
+        margin: 60px auto 0;
+        min-height: 600px;
+        background: transparent;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        position: relative;
+      }
+      .tidycal-embed {
+        width: 100%;
+        height: 100%;
+      }
+
+      /* --- 11. CINEMATIC MAP SECTION --- */
+      .location-section {
+        position: relative;
+        width: 100%;
+        height: 65vh;
+        min-height: 500px;
+        background: #000;
+        overflow: hidden;
+      }
+      .map-embed {
+        width: 100%;
+        height: 100%;
+        border: none;
+        filter: grayscale(100%) contrast(1.1) opacity(0.7);
+        transition: all 0.8s var(--transition);
+      }
+      .location-section:hover .map-embed {
+        filter: grayscale(0%) contrast(1) opacity(1);
+      }
+      .map-plaque {
+        position: absolute;
+        top: 50%;
+        left: 5vw;
+        transform: translateY(-50%);
+        background: var(--glass);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        padding: 60px 50px;
+        max-width: 450px;
+        z-index: 10;
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+        border-left: 4px solid var(--cyan);
+        pointer-events: none;
+      }
+      .map-plaque h3 {
+        color: var(--navy);
+        font-size: 2.2rem;
+        line-height: 1;
+        margin-bottom: 15px;
+        letter-spacing: -1px;
+      }
+      .map-plaque p {
+        color: #555;
+        font-size: 1rem;
+        line-height: 1.6;
+      }
+
+      /* --- 12. MEGA FOOTER --- */
       footer {
         background: var(--navy);
         padding: 120px 40px 40px;
         color: var(--white);
-        border-top: 5px solid var(--cyan);
       }
       .footer-grid {
         max-width: 1400px;
@@ -690,14 +844,12 @@
         .top-bar {
           padding: 0 20px;
         }
-        /* Hides names on mobile so it fits, keeps icons and language switcher */
         .top-bar-socials span {
           display: none;
         }
         .lang-switcher span {
           display: inline-block;
         }
-
         .navbar {
           height: 100px;
           padding: 0 20px;
@@ -718,6 +870,16 @@
         .hero-plaque p {
           margin: 0 auto 30px;
         }
+        .signature-grid {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+        .signature-content .marketing-text {
+          margin: 0 auto 40px;
+        }
+        .ms-drawn-svg text {
+          font-size: 150px;
+        }
         .film-item {
           min-width: 85vw;
         }
@@ -729,6 +891,16 @@
         }
         .nav-links {
           display: none;
+        }
+        .map-plaque {
+          position: relative;
+          left: 0;
+          top: 0;
+          transform: none;
+          width: 100%;
+          max-width: 100%;
+          border-left: none;
+          border-top: 4px solid var(--cyan);
         }
         .footer-grid {
           grid-template-columns: 1fr;
@@ -754,8 +926,24 @@
           ></path>
         </svg>
         <a href="tel:+201013333983">+20 101 333 3983</a>
+        <span class="divider">|</span>
+        <a href="#location" class="smooth-scroll">
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+            <circle cx="12" cy="10" r="3"></circle>
+          </svg>
+          <span>Map & Location</span>
+        </a>
       </div>
-
       <div class="top-bar-socials">
         <a
           href="https://www.facebook.com/share/18cyUYgFRZ/?mibextid=wwXIfr"
@@ -824,22 +1012,22 @@
     </div>
 
     <nav class="navbar" id="navbar">
-      <a href="#" class="logo">
+      <a href="#" class="logo smooth-scroll">
         <img
           src="https://raw.githubusercontent.com/zeyadabdulfattah/Sabry-Dental/main/images-logo/logo.png"
           alt="Sabry Dental Center"
         />
       </a>
       <div class="nav-links">
-        <a href="#">Clinical Expertise</a>
-        <a href="#">Patient Cases</a>
-        <a href="#">Implant Zone Academy</a>
-        <a href="#">About</a>
+        <a href="#expertise" class="smooth-scroll">Clinical Expertise</a>
+        <a href="#cases" class="smooth-scroll">Patient Cases</a>
+        <a href="#academy" class="smooth-scroll">Implant Zone Academy</a>
+        <a href="#philosophy" class="smooth-scroll">About</a>
       </div>
-      <a href="#" class="btn-cyan">Book Consultation</a>
+      <a href="#booking" class="btn-cyan smooth-scroll">Book Consultation</a>
     </nav>
 
-    <section class="hero-cinematic">
+    <section class="hero-cinematic" id="hero">
       <div class="bg-slider" id="bgSlider">
         <div
           class="bg-slide active"
@@ -884,9 +1072,7 @@
           "
         ></div>
       </div>
-
       <div class="hero-overlay"></div>
-
       <div class="hero-plaque">
         <div class="mask">
           <span class="eyebrow mask-text delay-1"
@@ -905,7 +1091,9 @@
           </p>
         </div>
         <div class="mask">
-          <a href="#" class="btn-cyan mask-text delay-btn"
+          <a
+            href="#expertise"
+            class="btn-cyan mask-text delay-btn smooth-scroll"
             >Discover The Clinic</a
           >
         </div>
@@ -927,12 +1115,9 @@
       </div>
     </div>
 
-    <section class="transformation-section">
+    <section class="transformation-section" id="expertise">
       <div class="container">
-        <div
-          class="section-header text-center reveal-up"
-          style="text-align: center"
-        >
+        <div class="section-header text-center reveal-up">
           <h2>The Architecture of a <br /><span>Perfected Smile.</span></h2>
           <p
             style="
@@ -946,7 +1131,6 @@
             Slide to Compare
           </p>
         </div>
-
         <div class="ba-container reveal-up">
           <img
             src="https://raw.githubusercontent.com/zeyadabdulfattah/Sabry-Dental/main/images-patients/2.jpg"
@@ -969,10 +1153,66 @@
             id="baRange"
           />
         </div>
+        <div class="section-end-cta reveal-up">
+          <a
+            href="#booking"
+            class="btn-cyan smooth-scroll"
+            style="color: var(--navy); border-color: var(--navy)"
+            >Book Your Transformation</a
+          >
+        </div>
       </div>
     </section>
 
-    <section class="filmstrip-section">
+    <section class="signature-section" id="philosophy">
+      <div class="signature-grid">
+        <div class="signature-visual reveal-left">
+          <svg
+            class="ms-drawn-svg"
+            viewBox="0 0 400 250"
+            preserveAspectRatio="xMidYMid meet"
+          >
+            <text
+              x="50%"
+              y="50%"
+              text-anchor="middle"
+              dominant-baseline="central"
+              class="ms-stroke-base"
+            >
+              MS
+            </text>
+            <text
+              x="50%"
+              y="50%"
+              text-anchor="middle"
+              dominant-baseline="central"
+              class="ms-stroke-anim"
+            >
+              MS
+            </text>
+          </svg>
+        </div>
+        <div class="signature-content reveal-up">
+          <h3 class="eyebrow">The Mastermind</h3>
+          <h2>Dr. Mohamed Sabry</h2>
+          <p class="marketing-text">
+            Dentistry is no longer merely a clinical procedure; it is an
+            architectural discipline. Driven by an uncompromising pursuit of
+            perfection, Dr. Sabry merges elite surgical protocols with bespoke
+            aesthetic design. Every jaw reconstruction and zirconia placement is
+            a masterclass in precision, elevating the standard of dental care
+            from medical necessity to a hyper-precise art form.
+          </p>
+          <div>
+            <a href="#booking" class="btn-cyan smooth-scroll"
+              >Book Consultation</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="filmstrip-section" id="cases">
       <div class="container">
         <div class="section-header reveal-up">
           <h2>Documented <span>Excellence.</span></h2>
@@ -986,55 +1226,64 @@
               text-transform: uppercase;
             "
           >
-            Hover images to reveal Before state.
+            Hover images to reveal Before state. Drag to explore.
           </p>
         </div>
       </div>
-
-      <div class="filmstrip-track reveal-left" id="filmstrip">
-        <div class="film-item">
-          <img
-            src="https://raw.githubusercontent.com/zeyadabdulfattah/Sabry-Dental/main/images-patients/4.jpg"
-            alt="After"
-            class="img-after"
-          />
-          <img
-            src="https://raw.githubusercontent.com/zeyadabdulfattah/Sabry-Dental/main/images-patients/3.jpg"
-            alt="Before"
-            class="img-before"
-          />
-          <div class="film-caption">Zirconia Case 01</div>
+      <div class="filmstrip-viewport reveal-left">
+        <div class="filmstrip-track" id="filmstrip">
+          <div class="film-item">
+            <img
+              src="https://raw.githubusercontent.com/zeyadabdulfattah/Sabry-Dental/main/images-patients/4.jpg"
+              alt="After"
+              class="img-after"
+            />
+            <img
+              src="https://raw.githubusercontent.com/zeyadabdulfattah/Sabry-Dental/main/images-patients/3.jpg"
+              alt="Before"
+              class="img-before"
+            />
+            <div class="film-caption">Zirconia Case 01</div>
+          </div>
+          <div class="film-item">
+            <img
+              src="https://raw.githubusercontent.com/zeyadabdulfattah/Sabry-Dental/main/images-patients/6.jpg"
+              alt="After"
+              class="img-after"
+            />
+            <img
+              src="https://raw.githubusercontent.com/zeyadabdulfattah/Sabry-Dental/main/images-patients/5.jpg"
+              alt="Before"
+              class="img-before"
+            />
+            <div class="film-caption">Full Arch Harmonization</div>
+          </div>
+          <div class="film-item">
+            <img
+              src="https://raw.githubusercontent.com/zeyadabdulfattah/Sabry-Dental/main/images-patients/8.jpg"
+              alt="After"
+              class="img-after"
+            />
+            <img
+              src="https://raw.githubusercontent.com/zeyadabdulfattah/Sabry-Dental/main/images-patients/7.jpg"
+              alt="Before"
+              class="img-before"
+            />
+            <div class="film-caption">Master Crafted Aesthetics</div>
+          </div>
         </div>
-        <div class="film-item">
-          <img
-            src="https://raw.githubusercontent.com/zeyadabdulfattah/Sabry-Dental/main/images-patients/6.jpg"
-            alt="After"
-            class="img-after"
-          />
-          <img
-            src="https://raw.githubusercontent.com/zeyadabdulfattah/Sabry-Dental/main/images-patients/5.jpg"
-            alt="Before"
-            class="img-before"
-          />
-          <div class="film-caption">Full Arch Harmonization</div>
-        </div>
-        <div class="film-item">
-          <img
-            src="https://raw.githubusercontent.com/zeyadabdulfattah/Sabry-Dental/main/images-patients/8.jpg"
-            alt="After"
-            class="img-after"
-          />
-          <img
-            src="https://raw.githubusercontent.com/zeyadabdulfattah/Sabry-Dental/main/images-patients/7.jpg"
-            alt="Before"
-            class="img-before"
-          />
-          <div class="film-caption">Master Crafted Aesthetics</div>
-        </div>
+      </div>
+      <div class="container section-end-cta reveal-up">
+        <a
+          href="#booking"
+          class="btn-cyan smooth-scroll"
+          style="color: var(--navy); border-color: var(--navy)"
+          >Start Your Case</a
+        >
       </div>
     </section>
 
-    <section class="posters-section">
+    <section class="posters-section" id="academy">
       <div class="container">
         <div class="section-header reveal-up">
           <h3
@@ -1051,7 +1300,7 @@
           <h2>Implant Zone <span>Masterclasses.</span></h2>
           <p
             style="
-              color: var(--navy);
+              color: rgba(255, 255, 255, 0.7);
               font-size: 1.1rem;
               max-width: 600px;
               margin: 15px auto 0;
@@ -1062,58 +1311,120 @@
           </p>
         </div>
       </div>
-
-      <div class="poster-track-wrapper reveal-up" id="posterTrack">
-        <div class="poster-item">
-          <img
-            src="https://raw.githubusercontent.com/zeyadabdulfattah/Sabry-Dental/main/images-posters/1.JPG"
-            alt="Masterclass Poster 1"
-          />
-          <div class="poster-label">Explore Module</div>
-        </div>
-        <div class="poster-item">
-          <img
-            src="https://raw.githubusercontent.com/zeyadabdulfattah/Sabry-Dental/main/images-posters/2.JPG"
-            alt="Masterclass Poster 2"
-          />
-          <div class="poster-label">Explore Module</div>
-        </div>
-        <div class="poster-item">
-          <img
-            src="https://raw.githubusercontent.com/zeyadabdulfattah/Sabry-Dental/main/images-posters/3.JPG"
-            alt="Masterclass Poster 3"
-          />
-          <div class="poster-label">Explore Module</div>
-        </div>
-        <div class="poster-item">
-          <img
-            src="https://raw.githubusercontent.com/zeyadabdulfattah/Sabry-Dental/main/images-posters/4.JPG"
-            alt="Masterclass Poster 4"
-          />
-          <div class="poster-label">Explore Module</div>
-        </div>
-        <div class="poster-item">
-          <img
-            src="https://raw.githubusercontent.com/zeyadabdulfattah/Sabry-Dental/main/images-posters/5.JPG"
-            alt="Masterclass Poster 5"
-          />
-          <div class="poster-label">Explore Module</div>
-        </div>
-        <div class="poster-item">
-          <img
-            src="https://raw.githubusercontent.com/zeyadabdulfattah/Sabry-Dental/main/images-posters/6.JPG"
-            alt="Masterclass Poster 6"
-          />
-          <div class="poster-label">Explore Module</div>
-        </div>
-        <div class="poster-item">
-          <img
-            src="https://raw.githubusercontent.com/zeyadabdulfattah/Sabry-Dental/main/images-posters/7.JPG"
-            alt="Masterclass Poster 7"
-          />
-          <div class="poster-label">Explore Module</div>
+      <div class="posters-viewport reveal-up">
+        <div class="poster-track-wrapper" id="posterTrack">
+          <div class="poster-item">
+            <img
+              src="https://raw.githubusercontent.com/zeyadabdulfattah/Sabry-Dental/main/images-posters/1.JPG"
+              alt="Masterclass Poster 1"
+            />
+            <div class="poster-label">Explore Module</div>
+          </div>
+          <div class="poster-item">
+            <img
+              src="https://raw.githubusercontent.com/zeyadabdulfattah/Sabry-Dental/main/images-posters/2.JPG"
+              alt="Masterclass Poster 2"
+            />
+            <div class="poster-label">Explore Module</div>
+          </div>
+          <div class="poster-item">
+            <img
+              src="https://raw.githubusercontent.com/zeyadabdulfattah/Sabry-Dental/main/images-posters/3.JPG"
+              alt="Masterclass Poster 3"
+            />
+            <div class="poster-label">Explore Module</div>
+          </div>
+          <div class="poster-item">
+            <img
+              src="https://raw.githubusercontent.com/zeyadabdulfattah/Sabry-Dental/main/images-posters/4.JPG"
+              alt="Masterclass Poster 4"
+            />
+            <div class="poster-label">Explore Module</div>
+          </div>
+          <div class="poster-item">
+            <img
+              src="https://raw.githubusercontent.com/zeyadabdulfattah/Sabry-Dental/main/images-posters/5.JPG"
+              alt="Masterclass Poster 5"
+            />
+            <div class="poster-label">Explore Module</div>
+          </div>
+          <div class="poster-item">
+            <img
+              src="https://raw.githubusercontent.com/zeyadabdulfattah/Sabry-Dental/main/images-posters/6.JPG"
+              alt="Masterclass Poster 6"
+            />
+            <div class="poster-label">Explore Module</div>
+          </div>
+          <div class="poster-item">
+            <img
+              src="https://raw.githubusercontent.com/zeyadabdulfattah/Sabry-Dental/main/images-posters/7.JPG"
+              alt="Masterclass Poster 7"
+            />
+            <div class="poster-label">Explore Module</div>
+          </div>
         </div>
       </div>
+      <div class="container section-end-cta reveal-up">
+        <a href="#booking" class="btn-cyan smooth-scroll">Book Consultation</a>
+      </div>
+    </section>
+
+    <section class="booking-section" id="booking">
+      <div class="container reveal-up">
+        <h3
+          style="
+            color: var(--cyan);
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+          "
+        >
+          Your Next Step
+        </h3>
+        <h2
+          style="
+            font-size: clamp(2.5rem, 4vw, 4rem);
+            color: var(--navy);
+            letter-spacing: -1.5px;
+            margin-bottom: 20px;
+          "
+        >
+          Secure Your <span>Consultation.</span>
+        </h2>
+
+        <div class="tidycal-container">
+          <div class="tidycal-embed" data-path="zqsselzqss"></div>
+          <script src="https://tidycal.com/js/embed.js" async></script>
+        </div>
+      </div>
+    </section>
+
+    <section class="location-section reveal-up" id="location">
+      <div class="map-plaque">
+        <h3>The Center of<br />Excellence.</h3>
+        <p>
+          Located in the heart of Mansoura, our facility is engineered with
+          state-of-the-art restorative technology and master-crafted clinical
+          suites designed for your ultimate comfort.
+        </p>
+        <div style="margin-top: 30px">
+          <a
+            href="#booking"
+            class="btn-cyan smooth-scroll"
+            style="color: var(--navy); border-color: var(--navy)"
+            >Book Your Visit</a
+          >
+        </div>
+      </div>
+      <iframe
+        class="map-embed"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d109403.49257608249!2d31.31295240212371!3d31.041459461148408!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14f79c73bf1b4153%3A0xc5bc4cb003b1e3!2sMansoura%2C%20Mansoura%20Qism%202%2C%20El%20Mansoura%2C%20Dakahlia%20Governorate%2C%20Egypt!5e0!3m2!1sen!2sus!4v1701380931201!5m2!1sen!2sus"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
     </section>
 
     <footer>
@@ -1136,29 +1447,56 @@
           <ul>
             <li><a href="tel:01013333983">✆ 010 1333 3983</a></li>
             <li><a href="tel:0502508152">✆ 050 250 8152</a></li>
-            <li><a href="#">📍 Mansoura, Egypt</a></li>
+            <li>
+              <a href="#location" class="smooth-scroll">📍 Mansoura, Egypt</a>
+            </li>
           </ul>
         </div>
         <div class="footer-links">
           <h4>Quick Links</h4>
           <ul>
-            <li><a href="#">Book Consultation</a></li>
-            <li><a href="#">Implant Zone Academy</a></li>
-            <li><a href="#">Clinical Cases</a></li>
+            <li>
+              <a href="#booking" class="smooth-scroll">Book Consultation</a>
+            </li>
+            <li>
+              <a href="#academy" class="smooth-scroll">Implant Zone Academy</a>
+            </li>
+            <li><a href="#cases" class="smooth-scroll">Clinical Cases</a></li>
           </ul>
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; 2026 Sabry Dental Center. All Rights Reserved.</p>
+        <p>© 2026 Sabry Dental Center. All Rights Reserved.</p>
         <p>Quality Always Wins.</p>
       </div>
     </footer>
 
     <script>
+      // 0. SMOOTH SCROLLING INTERCEPTOR
+      document.querySelectorAll(".smooth-scroll").forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          const targetId = this.getAttribute("href");
+          if (targetId === "#") return;
+
+          e.preventDefault();
+          const targetEl = document.querySelector(targetId);
+          if (targetEl) {
+            const headerOffset = 135;
+            const elementPosition = targetEl.getBoundingClientRect().top;
+            const offsetPosition =
+              elementPosition + window.pageYOffset - headerOffset;
+
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: "smooth",
+            });
+          }
+        });
+      });
+
       // 1. DYNAMIC NAVBAR SCROLL TRIGGER
       window.addEventListener("scroll", () => {
         const header = document.getElementById("navbar");
-        // Triggers color-shift and solid glass background after scrolling past the top-bar (45px)
         if (window.scrollY > 45) {
           header.classList.add("scrolled");
         } else {
@@ -1196,7 +1534,6 @@
       const baRange = document.getElementById("baRange");
       const baBefore = document.getElementById("baBefore");
       const baHandle = document.getElementById("baHandle");
-
       if (baRange) {
         baRange.addEventListener("input", (e) => {
           const value = e.target.value;
@@ -1205,40 +1542,120 @@
         });
       }
 
-      // 5. DRAG-TO-SCROLL LOGIC (Reusable Function)
-      function enableDragScroll(sliderId) {
-        const slider = document.getElementById(sliderId);
+      // 5. CINEMATIC INFINITE AUTOSCROLL DRAG LOGIC (NO WALLS)
+      function createInfiniteSlider(trackId, speed = 1) {
+        const track = document.getElementById(trackId);
+        if (!track) return;
+        const viewport = track.parentElement;
+
         let isDown = false;
         let startX;
-        let scrollLeft;
+        let currentX = 0;
+        let hoverPause = false;
+        let animationId;
 
-        if (slider) {
-          slider.addEventListener("mousedown", (e) => {
-            isDown = true;
-            slider.style.cursor = "grabbing";
-            startX = e.pageX - slider.offsetLeft;
-            scrollLeft = slider.scrollLeft;
-          });
-          slider.addEventListener("mouseleave", () => {
-            isDown = false;
-            slider.style.cursor = "grab";
-          });
-          slider.addEventListener("mouseup", () => {
-            isDown = false;
-            slider.style.cursor = "grab";
-          });
-          slider.addEventListener("mousemove", (e) => {
-            if (!isDown) return;
-            e.preventDefault();
-            const x = e.pageX - slider.offsetLeft;
-            const walk = (x - startX) * 2;
-            slider.scrollLeft = scrollLeft - walk;
+        const originalItems = Array.from(track.children);
+        originalItems.forEach((item) =>
+          track.appendChild(item.cloneNode(true))
+        );
+        originalItems.forEach((item) =>
+          track.appendChild(item.cloneNode(true))
+        );
+
+        let originalWidth = 0;
+        function calcWidth() {
+          originalWidth = 0;
+          const gap = parseFloat(window.getComputedStyle(track).gap) || 0;
+          originalItems.forEach((item) => {
+            originalWidth += item.offsetWidth + gap;
           });
         }
+
+        calcWidth();
+        window.addEventListener("resize", calcWidth);
+        currentX = originalWidth;
+
+        function animate() {
+          if (!isDown && !hoverPause) {
+            currentX += speed;
+          }
+
+          if (currentX >= originalWidth * 2) {
+            currentX -= originalWidth;
+          } else if (currentX <= 0) {
+            currentX += originalWidth;
+          }
+
+          track.style.transform = `translate3d(-${currentX}px, 0, 0)`;
+          animationId = requestAnimationFrame(animate);
+        }
+
+        viewport.addEventListener("mousedown", (e) => {
+          isDown = true;
+          viewport.style.cursor = "grabbing";
+          startX = e.pageX;
+          cancelAnimationFrame(animationId);
+        });
+
+        window.addEventListener("mouseup", () => {
+          if (!isDown) return;
+          isDown = false;
+          viewport.style.cursor = "grab";
+          animate();
+        });
+
+        window.addEventListener("mousemove", (e) => {
+          if (!isDown) return;
+          e.preventDefault();
+          const x = e.pageX;
+          const walk = (startX - x) * 1.5;
+          currentX += walk;
+          startX = x;
+
+          if (currentX >= originalWidth * 2) currentX -= originalWidth;
+          if (currentX <= 0) currentX += originalWidth;
+
+          track.style.transform = `translate3d(-${currentX}px, 0, 0)`;
+        });
+
+        viewport.addEventListener("mouseenter", () => (hoverPause = true));
+        viewport.addEventListener("mouseleave", () => {
+          hoverPause = false;
+          if (isDown) {
+            isDown = false;
+            viewport.style.cursor = "grab";
+            animate();
+          }
+        });
+
+        viewport.addEventListener("touchstart", (e) => {
+          isDown = true;
+          startX = e.touches[0].pageX;
+          cancelAnimationFrame(animationId);
+        });
+        window.addEventListener("touchend", () => {
+          if (!isDown) return;
+          isDown = false;
+          animate();
+        });
+        window.addEventListener("touchmove", (e) => {
+          if (!isDown) return;
+          const x = e.touches[0].pageX;
+          const walk = (startX - x) * 1.5;
+          currentX += walk;
+          startX = x;
+
+          if (currentX >= originalWidth * 2) currentX -= originalWidth;
+          if (currentX <= 0) currentX += originalWidth;
+
+          track.style.transform = `translate3d(-${currentX}px, 0, 0)`;
+        });
+
+        animate();
       }
 
-      enableDragScroll("filmstrip");
-      enableDragScroll("posterTrack");
+      createInfiniteSlider("filmstrip", 1.8);
+      createInfiniteSlider("posterTrack", 1.4);
     </script>
   </body>
 </html>
