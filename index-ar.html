@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sabry Dental Center | The Academic Standard</title>
+    <title>مركز صبري لطب الأسنان | المعيار الأكاديمي</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Outfit:wght@300;400;500;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&family=Tajawal:wght@300;400;500;700;900&family=Outfit:wght@300;500;700;900&display=swap"
       rel="stylesheet"
     />
 
@@ -31,19 +31,26 @@
         -webkit-tap-highlight-color: transparent;
       }
       body {
-        font-family: "Plus Jakarta Sans", sans-serif;
+        font-family: "Cairo", sans-serif;
         background-color: var(--grey);
         color: var(--navy);
         overflow-x: hidden;
         -webkit-font-smoothing: antialiased;
+        direction: rtl;
       }
       h1,
       h2,
       h3,
       h4,
-      .outfit {
-        font-family: "Outfit", sans-serif;
+      .outfit,
+      .mobile-link,
+      .hero-plaque .eyebrow,
+      .marquee-item {
+        font-family: "Tajawal", sans-serif;
       }
+      .ms-text {
+        font-family: "Outfit", sans-serif;
+      } /* Maintain Monogram */
       a {
         text-decoration: none;
       }
@@ -51,7 +58,7 @@
         list-style: none;
       }
 
-      /* --- 2. PREMIUM TOP BAR (RESPONSIVE COMMAND CENTER) --- */
+      /* --- 2. PREMIUM TOP BAR (RESPONSIVE COMMAND CENTER - RTL) --- */
       .top-bar {
         position: fixed;
         top: 0;
@@ -64,10 +71,10 @@
         justify-content: space-between;
         align-items: center;
         padding: 0 60px;
-        font-family: "Montserrat", sans-serif;
-        font-size: 0.75rem;
-        font-weight: 500;
-        letter-spacing: 1.5px;
+        font-family: "Cairo", sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        letter-spacing: 0.5px;
         z-index: 1002;
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
       }
@@ -110,9 +117,9 @@
       .lang-switcher {
         display: flex;
         align-items: center;
-        border-left: 1px solid rgba(255, 255, 255, 0.2);
-        padding-left: 25px;
-        margin-left: 5px;
+        border-right: 1px solid rgba(255, 255, 255, 0.2);
+        padding-right: 25px;
+        margin-right: 5px;
       }
 
       .mobile-book-now {
@@ -163,15 +170,13 @@
 
       .nav-links {
         display: flex;
-        gap: 45px;
+        gap: 40px;
       }
       .nav-links a {
         color: var(--white);
-        font-family: "Montserrat", sans-serif;
-        font-weight: 500;
-        font-size: 0.8rem;
-        letter-spacing: 1.5px;
-        text-transform: uppercase;
+        font-family: "Cairo", sans-serif;
+        font-weight: 600;
+        font-size: 0.95rem;
         transition: all 0.5s var(--transition);
         opacity: 0.9;
       }
@@ -182,19 +187,16 @@
       .nav-links a:hover {
         color: var(--cyan);
         opacity: 1;
-        letter-spacing: 4px;
       }
 
       .btn-cyan {
         background: transparent;
         color: var(--white);
         border: 1px solid rgba(255, 255, 255, 0.5);
-        padding: 14px 35px;
-        font-family: "Montserrat", sans-serif;
-        font-weight: 500;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        font-size: 0.75rem;
+        padding: 12px 35px;
+        font-family: "Cairo", sans-serif;
+        font-weight: 700;
+        font-size: 0.85rem;
         position: relative;
         overflow: hidden;
         transition: all 0.4s ease;
@@ -232,7 +234,7 @@
         color: var(--white);
       }
 
-      /* --- EXECUTIVE MOBILE MENU (REDESIGNED) --- */
+      /* --- EXECUTIVE MOBILE MENU (RTL) --- */
       .menu-toggle {
         display: none;
         flex-direction: column;
@@ -267,19 +269,19 @@
         padding: 0 clamp(30px, 8vw, 60px);
         opacity: 0;
         visibility: hidden;
-        clip-path: circle(0% at 90% 10%);
+        clip-path: circle(0% at 10% 10%); /* Anchored to Top Left in RTL */
         transition: all 0.6s cubic-bezier(0.65, 0, 0.15, 1);
       }
       .mobile-menu-overlay.active {
         opacity: 1;
         visibility: visible;
-        clip-path: circle(150% at 90% 10%);
+        clip-path: circle(150% at 10% 10%);
       }
 
       .mobile-close-btn {
         position: absolute;
         top: 50px;
-        right: clamp(30px, 8vw, 60px);
+        left: clamp(30px, 8vw, 60px);
         width: 40px;
         height: 40px;
         cursor: pointer;
@@ -306,9 +308,8 @@
 
       .mobile-eyebrow {
         color: var(--cyan);
-        font-family: "Outfit", sans-serif;
-        font-size: 0.85rem;
-        letter-spacing: 4px;
+        font-family: "Tajawal", sans-serif;
+        font-size: 1rem;
         text-transform: uppercase;
         margin-bottom: 20px;
         opacity: 0;
@@ -321,15 +322,13 @@
       }
 
       .mobile-menu-overlay a.mobile-link {
-        font-family: "Outfit", sans-serif;
+        font-family: "Tajawal", sans-serif;
         font-size: clamp(2.2rem, 8vw, 3.5rem);
-        font-weight: 300;
+        font-weight: 400;
         color: var(--white);
-        text-transform: uppercase;
-        letter-spacing: 1px;
         margin-bottom: 15px;
         opacity: 0;
-        transform: translateX(-40px);
+        transform: translateX(40px);
         transition: all 0.4s var(--transition);
         display: block;
         width: 100%;
@@ -352,15 +351,13 @@
       }
       .mobile-menu-overlay a.mobile-link:hover {
         color: var(--cyan);
-        transform: translateX(10px);
+        transform: translateX(-10px);
       }
 
       .mobile-menu-overlay .btn-cyan.mobile-link {
         margin-top: 15px;
-        font-size: 0.9rem;
-        font-family: "Montserrat", sans-serif;
-        font-weight: 500;
-        letter-spacing: 2px;
+        font-size: 0.95rem;
+        font-family: "Cairo", sans-serif;
         padding: 16px 35px;
         width: max-content;
         transition-delay: 0.3s !important;
@@ -382,15 +379,15 @@
       .mobile-contact-info a {
         color: var(--cyan);
         font-size: 1.2rem;
-        font-weight: 500;
+        font-weight: 600;
         margin-bottom: 5px;
         display: block;
-        font-family: "Montserrat", sans-serif;
+        font-family: "Cairo", sans-serif;
       }
       .mobile-contact-info p {
         color: rgba(255, 255, 255, 0.5);
         font-size: 0.9rem;
-        font-family: "Montserrat", sans-serif;
+        font-family: "Cairo", sans-serif;
       }
 
       /* --- 4. CINEMATIC KEN BURNS HERO --- */
@@ -468,26 +465,23 @@
       }
       .hero-plaque .eyebrow {
         color: var(--cyan);
-        font-family: "Outfit", sans-serif;
         font-weight: 700;
-        font-size: clamp(0.8rem, 2vw, 1rem);
-        letter-spacing: 4px;
-        text-transform: uppercase;
+        font-size: clamp(0.9rem, 2vw, 1.1rem);
         margin-bottom: 10px;
       }
       .hero-plaque h1 {
         font-size: clamp(3rem, 7vw, 5.5rem);
-        line-height: 1;
+        line-height: 1.1;
         color: var(--white);
         margin-bottom: 20px;
-        letter-spacing: -2px;
       }
       .hero-plaque p {
-        font-size: clamp(1rem, 2.5vw, 1.15rem);
+        font-size: clamp(1.1rem, 2.5vw, 1.2rem);
         color: rgba(255, 255, 255, 0.7);
-        line-height: 1.7;
+        line-height: 1.8;
         margin-bottom: 35px;
         max-width: 600px;
+        font-family: "Cairo", sans-serif;
       }
       @keyframes maskReveal {
         0% {
@@ -514,16 +508,16 @@
         white-space: nowrap;
         animation: marquee 25s linear infinite;
         align-items: center;
-      }
+        direction: ltr;
+      } /* LTR to keep loop math correct */
       .marquee-item {
         color: var(--white);
-        font-family: "Outfit", sans-serif;
-        font-size: clamp(0.9rem, 2vw, 1.1rem);
-        font-weight: 300;
-        letter-spacing: 2px;
+        font-size: clamp(1rem, 2vw, 1.2rem);
+        font-weight: 400;
         display: flex;
         align-items: center;
         gap: 15px;
+        direction: rtl;
       }
       .marquee-item span {
         color: var(--cyan);
@@ -564,8 +558,7 @@
       }
       .section-header h2 {
         font-size: clamp(2.5rem, 6vw, 4.5rem);
-        line-height: 1;
-        letter-spacing: -2px;
+        line-height: 1.2;
         color: var(--navy);
       }
       .section-header h2 span {
@@ -583,6 +576,7 @@
         overflow: hidden;
         box-shadow: 0 30px 60px rgba(10, 25, 47, 0.12);
         border: 8px solid var(--white);
+        direction: ltr;
       }
       .ba-img {
         position: absolute;
@@ -676,7 +670,6 @@
         overflow: visible;
       }
       .ms-text {
-        font-family: "Outfit", sans-serif;
         font-size: clamp(120px, 20vw, 200px);
         font-weight: 500;
         letter-spacing: 5px;
@@ -696,25 +689,22 @@
 
       .signature-content .eyebrow {
         color: var(--cyan);
-        font-family: "Outfit", sans-serif;
-        font-size: 0.9rem;
-        letter-spacing: 4px;
-        text-transform: uppercase;
+        font-size: 1.1rem;
         margin-bottom: 20px;
       }
       .signature-content h2 {
         font-size: clamp(2.5rem, 5vw, 4.5rem);
-        line-height: 1.1;
+        line-height: 1.2;
         margin-bottom: 30px;
-        letter-spacing: -1.5px;
       }
       .signature-content .marketing-text {
-        font-size: clamp(1rem, 2vw, 1.1rem);
-        color: rgba(255, 255, 255, 0.7);
+        font-family: "Cairo", sans-serif;
+        font-size: clamp(1.1rem, 2vw, 1.2rem);
+        color: rgba(255, 255, 255, 0.8);
         line-height: 1.8;
         max-width: 500px;
         margin-bottom: 40px;
-        font-weight: 300;
+        font-weight: 400;
       }
 
       /* --- 8. HOVER-REVEAL FILMSTRIP GALLERY --- */
@@ -731,6 +721,7 @@
         overflow: hidden;
         padding: 40px 0;
         cursor: grab;
+        direction: ltr;
       }
       .filmstrip-viewport:active {
         cursor: grabbing;
@@ -742,6 +733,7 @@
         will-change: transform;
       }
       .film-item {
+        direction: rtl;
         min-width: clamp(280px, 75vw, 600px);
         height: clamp(350px, 60vh, 500px);
         border-radius: 0;
@@ -776,17 +768,15 @@
       .film-caption {
         position: absolute;
         bottom: clamp(15px, 4vw, 30px);
-        left: clamp(15px, 4vw, 30px);
+        right: clamp(15px, 4vw, 30px);
+        left: auto;
         background: var(--glass-dark);
         color: var(--white);
         padding: 10px 20px;
-        font-family: "Outfit", sans-serif;
         font-weight: 700;
         backdrop-filter: blur(10px);
         z-index: 5;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        font-size: clamp(0.7rem, 2vw, 0.85rem);
+        font-size: clamp(0.8rem, 2vw, 0.9rem);
         pointer-events: none;
       }
 
@@ -801,6 +791,7 @@
       }
       .posters-section .section-header p {
         color: rgba(255, 255, 255, 0.7) !important;
+        font-family: "Cairo", sans-serif;
       }
       .posters-viewport {
         width: 100%;
@@ -808,6 +799,7 @@
         padding: 40px 0;
         cursor: grab;
         perspective: 1000px;
+        direction: ltr;
       }
       .posters-viewport:active {
         cursor: grabbing;
@@ -819,6 +811,7 @@
         will-change: transform;
       }
       .poster-item {
+        direction: rtl;
         min-width: clamp(250px, 60vw, 350px);
         height: clamp(350px, 60vh, 500px);
         position: relative;
@@ -845,15 +838,13 @@
       .poster-label {
         position: absolute;
         bottom: 20px;
-        right: 20px;
+        left: 20px;
+        right: auto;
         background: var(--white);
         color: var(--navy);
         padding: 8px 20px;
         font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        font-size: 0.75rem;
-        font-family: "Outfit", sans-serif;
+        font-size: 0.8rem;
         opacity: 0;
         transform: translateY(10px);
         transition: all 0.4s ease;
@@ -904,10 +895,12 @@
       .location-section:hover .map-embed {
         filter: grayscale(0%) contrast(1) opacity(1);
       }
+
       .map-plaque {
         position: absolute;
         top: 50%;
-        left: 5vw;
+        right: 5vw;
+        left: auto;
         transform: translateY(-50%);
         background: var(--glass);
         backdrop-filter: blur(20px);
@@ -916,20 +909,21 @@
         max-width: 450px;
         z-index: 10;
         box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
-        border-left: 4px solid var(--cyan);
+        border-right: 4px solid var(--cyan);
+        border-left: none;
         pointer-events: none;
       }
       .map-plaque h3 {
         color: var(--navy);
         font-size: clamp(1.8rem, 4vw, 2.2rem);
-        line-height: 1;
+        line-height: 1.2;
         margin-bottom: 15px;
-        letter-spacing: -1px;
       }
       .map-plaque p {
         color: #555;
-        font-size: clamp(0.9rem, 2vw, 1rem);
+        font-size: clamp(1rem, 2vw, 1.1rem);
         line-height: 1.6;
+        font-family: "Cairo", sans-serif;
       }
 
       /* --- 12. MEGA FOOTER --- */
@@ -948,12 +942,11 @@
         padding-bottom: 60px;
       }
       .footer-huge {
-        font-family: "Outfit", sans-serif;
         font-size: clamp(2.5rem, 6vw, 5rem);
         font-weight: 900;
-        line-height: 0.9;
+        line-height: 1;
         margin-bottom: 20px;
-        letter-spacing: -2px;
+        letter-spacing: -1px;
       }
       .footer-huge span {
         color: var(--cyan);
@@ -962,8 +955,6 @@
         color: var(--cyan);
         font-size: 1.2rem;
         margin-bottom: 25px;
-        text-transform: uppercase;
-        letter-spacing: 2px;
       }
       .footer-links li {
         margin-bottom: 15px;
@@ -971,6 +962,7 @@
       .footer-links a {
         color: rgba(255, 255, 255, 0.6);
         transition: color 0.3s;
+        font-family: "Cairo", sans-serif;
       }
       .footer-links a:hover {
         color: var(--white);
@@ -985,6 +977,7 @@
         color: rgba(255, 255, 255, 0.4);
         font-size: 0.9rem;
         text-align: center;
+        font-family: "Cairo", sans-serif;
       }
 
       /* --- SCROLL ANIMATION CLASSES --- */
@@ -995,7 +988,7 @@
       }
       .reveal-left {
         opacity: 0;
-        transform: translateX(-40px);
+        transform: translateX(40px);
         transition: 1s var(--transition);
       }
       .is-visible {
@@ -1013,11 +1006,10 @@
         }
         .mobile-book-now a {
           color: var(--cyan);
-          font-family: "Outfit", sans-serif;
-          font-size: 0.75rem;
+          font-family: "Tajawal", sans-serif;
+          font-size: 0.85rem;
           font-weight: 700;
           text-transform: uppercase;
-          letter-spacing: 1px;
           display: flex;
           align-items: center;
           gap: 6px;
@@ -1055,7 +1047,7 @@
         .hero-plaque {
           padding: 40px 20px;
           text-align: center;
-          left: 0;
+          right: 0;
           width: 100%;
           margin: 0 auto;
         }
@@ -1081,12 +1073,12 @@
 
         .map-plaque {
           position: relative;
-          left: 0;
+          right: 0;
           top: 0;
           transform: none;
           width: 100%;
           max-width: 100%;
-          border-left: none;
+          border-right: none;
           border-top: 4px solid var(--cyan);
         }
         .footer-bottom {
@@ -1097,7 +1089,7 @@
       @media (max-width: 480px) {
         .top-bar {
           display: flex;
-        } /* Command bar stays visible */
+        }
         .navbar {
           top: 45px;
         }
@@ -1113,64 +1105,6 @@
   </head>
   <body>
     <div class="top-bar">
-      <div class="top-bar-contact">
-        <div class="hide-on-mobile" style="display: flex; align-items: center">
-          <svg
-            width="14"
-            height="14"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path
-              d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
-            ></path>
-          </svg>
-          <a href="tel:+201013333983" style="margin-left: 6px"
-            >+20 101 333 3983</a
-          >
-          <span class="divider">|</span>
-          <a href="#location" class="smooth-scroll">
-            <svg
-              width="14"
-              height="14"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-              <circle cx="12" cy="10" r="3"></circle>
-            </svg>
-            <span style="margin-left: 6px">Map & Location</span>
-          </a>
-        </div>
-        <div class="mobile-book-now">
-          <a href="#booking" class="smooth-scroll">
-            <svg
-              width="14"
-              height="14"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-              <line x1="16" y1="2" x2="16" y2="6"></line>
-              <line x1="8" y1="2" x2="8" y2="6"></line>
-              <line x1="3" y1="10" x2="21" y2="10"></line>
-            </svg>
-            <span>Book Now</span>
-          </a>
-        </div>
-      </div>
       <div class="top-bar-socials">
         <a
           href="https://www.facebook.com/share/18cyUYgFRZ/?mibextid=wwXIfr"
@@ -1192,7 +1126,7 @@
               d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
             ></path>
           </svg>
-          <span>Facebook</span>
+          <span>فيسبوك</span>
         </a>
         <a
           href="https://www.instagram.com/dr.sabry.dentist?igsh=MzMzMjI4ZmVnY29w"
@@ -1214,11 +1148,11 @@
             <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
             <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
           </svg>
-          <span>Instagram</span>
+          <span>إنستغرام</span>
         </a>
         <div class="lang-switcher">
           <a
-            href="index-ar.html"
+            href="index.html"
             style="
               display: flex;
               align-items: center;
@@ -1243,7 +1177,66 @@
                 d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
               ></path>
             </svg>
-            <span>العربية</span>
+            <span style="font-family: 'Montserrat', sans-serif">English</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="top-bar-contact">
+        <div class="hide-on-mobile" style="display: flex; align-items: center">
+          <a href="#location" class="smooth-scroll">
+            <span style="margin-left: 6px">الخريطة والموقع</span>
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+          </a>
+          <span class="divider">|</span>
+          <a href="tel:+201013333983" dir="ltr" style="margin-right: 6px"
+            >+20 101 333 3983</a
+          >
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+            ></path>
+          </svg>
+        </div>
+        <div class="mobile-book-now">
+          <a href="#booking" class="smooth-scroll">
+            <span>احجز الآن</span>
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
           </a>
         </div>
       </div>
@@ -1257,12 +1250,12 @@
         />
       </a>
       <div class="nav-links">
-        <a href="#expertise" class="smooth-scroll">Clinical Expertise</a>
-        <a href="#cases" class="smooth-scroll">Patient Cases</a>
-        <a href="#academy" class="smooth-scroll">Implant Zone Academy</a>
-        <a href="#philosophy" class="smooth-scroll">About</a>
+        <a href="#expertise" class="smooth-scroll">الخبرة السريرية</a>
+        <a href="#cases" class="smooth-scroll">حالات المرضى</a>
+        <a href="#academy" class="smooth-scroll">إمبلانت زون</a>
+        <a href="#philosophy" class="smooth-scroll">عن العيادة</a>
       </div>
-      <a href="#booking" class="btn-cyan smooth-scroll">Book Consultation</a>
+      <a href="#booking" class="btn-cyan smooth-scroll">احجز استشارتك</a>
 
       <div class="menu-toggle" id="mobileMenuBtn">
         <span></span><span></span><span></span>
@@ -1274,23 +1267,21 @@
         <span></span><span></span>
       </div>
 
-      <div class="mobile-eyebrow">Menu Navigation</div>
+      <div class="mobile-eyebrow">القائمة الرئيسية</div>
 
-      <a href="#expertise" class="mobile-link smooth-scroll"
-        >Clinical Expertise</a
-      >
-      <a href="#cases" class="mobile-link smooth-scroll">Patient Cases</a>
+      <a href="#expertise" class="mobile-link smooth-scroll">الخبرة السريرية</a>
+      <a href="#cases" class="mobile-link smooth-scroll">حالات المرضى</a>
       <a href="#academy" class="mobile-link smooth-scroll"
-        >Implant Zone Academy</a
+        >أكاديمية إمبلانت زون</a
       >
-      <a href="#philosophy" class="mobile-link smooth-scroll">About</a>
+      <a href="#philosophy" class="mobile-link smooth-scroll">عن العيادة</a>
       <a href="#booking" class="btn-cyan mobile-link smooth-scroll"
-        >Book Consultation</a
+        >احجز استشارتك</a
       >
 
       <div class="mobile-contact-info">
-        <a href="tel:+201013333983">+20 101 333 3983</a>
-        <p>Mansoura, Egypt</p>
+        <a href="tel:+201013333983" dir="ltr">+20 101 333 3983</a>
+        <p>المنصورة، مصر</p>
       </div>
     </div>
 
@@ -1342,26 +1333,24 @@
       <div class="hero-overlay"></div>
       <div class="hero-plaque">
         <div class="mask">
-          <span class="eyebrow mask-text delay-1"
-            >The Architect of Excellence</span
-          >
+          <span class="eyebrow mask-text delay-1">مهندس التميز</span>
         </div>
         <div class="mask">
-          <h1 class="mask-text delay-2">Dr. Mohamed<br />Sabry</h1>
+          <h1 class="mask-text delay-2">د. محمد<br />صبري</h1>
         </div>
         <div class="mask">
           <p class="mask-text delay-3">
-            MSc. in Prosthodontics and founder of the Implant Zone Academy. Dr.
-            Sabry merges profound academic expertise with elite surgical
-            precision, specializing in full-jaw reconstructions and
-            master-crafted zirconia prosthodontics.
+            حاصل على درجة الماجستير في الاستعاضة السنية ومؤسس أكاديمية إمبلانت
+            زون. يدمج د. صبري بين الخبرة الأكاديمية العميقة والدقة الجراحية
+            الفائقة، متخصصاً في إعادة بناء الفكين بالكامل وتركيبات الزيركونيا
+            المصممة باحترافية.
           </p>
         </div>
         <div class="mask">
           <a
             href="#expertise"
             class="btn-cyan mask-text delay-btn smooth-scroll"
-            >Discover The Clinic</a
+            >اكتشف العيادة</a
           >
         </div>
       </div>
@@ -1369,33 +1358,33 @@
 
     <div class="authority-marquee">
       <div class="marquee-track">
-        <div class="marquee-item"><span>✦</span> MSc PROSTHODONTICS</div>
-        <div class="marquee-item"><span>✦</span> IMPLANT ZONE ACADEMY</div>
-        <div class="marquee-item"><span>✦</span> FULL-JAW RECONSTRUCTION</div>
-        <div class="marquee-item"><span>✦</span> MANSOURA 53 INSTRUCTOR</div>
-        <div class="marquee-item"><span>✦</span> ZIRCONIA EXPERT</div>
-        <div class="marquee-item"><span>✦</span> MSc PROSTHODONTICS</div>
-        <div class="marquee-item"><span>✦</span> IMPLANT ZONE ACADEMY</div>
-        <div class="marquee-item"><span>✦</span> FULL-JAW RECONSTRUCTION</div>
-        <div class="marquee-item"><span>✦</span> MANSOURA 53 INSTRUCTOR</div>
-        <div class="marquee-item"><span>✦</span> ZIRCONIA EXPERT</div>
+        <div class="marquee-item"><span>✦</span> ماجستير الاستعاضة السنية</div>
+        <div class="marquee-item"><span>✦</span> أكاديمية إمبلانت زون</div>
+        <div class="marquee-item"><span>✦</span> إعادة بناء الفكين</div>
+        <div class="marquee-item"><span>✦</span> محاضر منصورة 53</div>
+        <div class="marquee-item"><span>✦</span> خبير الزيركونيا</div>
+        <div class="marquee-item"><span>✦</span> ماجستير الاستعاضة السنية</div>
+        <div class="marquee-item"><span>✦</span> أكاديمية إمبلانت زون</div>
+        <div class="marquee-item"><span>✦</span> إعادة بناء الفكين</div>
+        <div class="marquee-item"><span>✦</span> محاضر منصورة 53</div>
+        <div class="marquee-item"><span>✦</span> خبير الزيركونيا</div>
       </div>
     </div>
 
     <section class="transformation-section section-padding" id="expertise">
       <div class="container">
         <div class="section-header text-center reveal-up">
-          <h2>The Architecture of a <br /><span>Perfected Smile.</span></h2>
+          <h2>هندسة الابتسامة <br /><span>المثالية.</span></h2>
           <p
             style="
               color: #666;
               margin-top: 15px;
+              font-family: 'Tajawal', sans-serif;
               font-weight: 600;
-              text-transform: uppercase;
-              letter-spacing: 2px;
+              letter-spacing: 1px;
             "
           >
-            Slide to Compare
+            اسحب للمقارنة
           </p>
         </div>
         <div class="ba-container reveal-up">
@@ -1425,7 +1414,7 @@
             href="#booking"
             class="btn-cyan smooth-scroll"
             style="color: var(--navy); border-color: var(--navy)"
-            >Book Your Transformation</a
+            >احجز رحلة تحولك</a
           >
         </div>
       </div>
@@ -1451,20 +1440,17 @@
           </svg>
         </div>
         <div class="signature-content reveal-up">
-          <h3 class="eyebrow">The Mastermind</h3>
-          <h2>Dr. Mohamed Sabry</h2>
+          <h3 class="eyebrow">العقل المدبر</h3>
+          <h2>د. محمد صبري</h2>
           <p class="marketing-text">
-            Dentistry is no longer merely a clinical procedure; it is an
-            architectural discipline. Driven by an uncompromising pursuit of
-            perfection, Dr. Sabry merges elite surgical protocols with bespoke
-            aesthetic design. Every jaw reconstruction and zirconia placement is
-            a masterclass in precision, elevating the standard of dental care
-            from medical necessity to a hyper-precise art form.
+            لم يعد طب الأسنان مجرد إجراء طبي؛ بل أصبح تخصصاً معمارياً. انطلاقاً
+            من سعيه الدائم نحو الكمال، يدمج د. صبري بين البروتوكولات الجراحية
+            المتقدمة والتصميم الجمالي المخصص. كل إعادة بناء للفك وتركيبة
+            زيركونيا هي تحفة فنية من الدقة، ترتقي بمعايير العناية بالأسنان من
+            ضرورة طبية إلى فن دقيق وفائق التميز.
           </p>
           <div>
-            <a href="#booking" class="btn-cyan smooth-scroll"
-              >Book Consultation</a
-            >
+            <a href="#booking" class="btn-cyan smooth-scroll">احجز استشارتك</a>
           </div>
         </div>
       </div>
@@ -1473,18 +1459,16 @@
     <section class="filmstrip-section section-padding" id="cases">
       <div class="container">
         <div class="section-header reveal-up">
-          <h2>Documented <span>Excellence.</span></h2>
+          <h2>تميز <span>مُوثّق.</span></h2>
           <p
             style="
               color: var(--cyan);
-              font-size: 1rem;
+              font-size: 1.1rem;
               margin-top: 10px;
               font-weight: 700;
-              letter-spacing: 1px;
-              text-transform: uppercase;
             "
           >
-            Hover images to reveal Before state. Drag to explore.
+            مرر فوق الصور لرؤية الحالة السابقة. اسحب للاستكشاف.
           </p>
         </div>
       </div>
@@ -1501,7 +1485,7 @@
               alt="Before"
               class="img-before"
             />
-            <div class="film-caption">Zirconia Case 01</div>
+            <div class="film-caption">حالة زيركونيا 01</div>
           </div>
           <div class="film-item">
             <img
@@ -1514,7 +1498,7 @@
               alt="Before"
               class="img-before"
             />
-            <div class="film-caption">Full Arch Harmonization</div>
+            <div class="film-caption">تناسق القوس الكامل</div>
           </div>
           <div class="film-item">
             <img
@@ -1527,7 +1511,7 @@
               alt="Before"
               class="img-before"
             />
-            <div class="film-caption">Master Crafted Aesthetics</div>
+            <div class="film-caption">جماليات مصممة باحترافية</div>
           </div>
         </div>
       </div>
@@ -1536,7 +1520,7 @@
           href="#booking"
           class="btn-cyan smooth-scroll"
           style="color: var(--navy); border-color: var(--navy)"
-          >Start Your Case</a
+          >ابدأ رحلة علاجك</a
         >
       </div>
     </section>
@@ -1547,15 +1531,14 @@
           <h3
             style="
               color: var(--cyan);
-              font-size: 0.9rem;
-              letter-spacing: 3px;
-              text-transform: uppercase;
+              font-family: 'Tajawal', sans-serif;
+              font-size: 1rem;
               margin-bottom: 10px;
             "
           >
-            Education & Mentorship
+            التعليم والإرشاد الأكاديمي
           </h3>
-          <h2>Implant Zone <span>Masterclasses.</span></h2>
+          <h2>دورات إمبلانت زون <span>الاحترافية.</span></h2>
           <p
             style="
               color: rgba(255, 255, 255, 0.7);
@@ -1564,8 +1547,8 @@
               margin: 15px auto 0;
             "
           >
-            Dr. Sabry shares his globally recognized protocols. Explore the
-            academic events shaping the future of implantology across Egypt.
+            يشارك د. صبري بروتوكولاته المعترف بها عالمياً. استكشف الفعاليات
+            الأكاديمية التي ترسم مستقبل زراعة الأسنان في جميع أنحاء مصر.
           </p>
         </div>
       </div>
@@ -1576,54 +1559,54 @@
               src="https://raw.githubusercontent.com/zeyadabdulfattah/Sabry-Dental/main/images-posters/1.JPG"
               alt="Masterclass Poster 1"
             />
-            <div class="poster-label">Explore Module</div>
+            <div class="poster-label">استكشف الوحدة</div>
           </div>
           <div class="poster-item">
             <img
               src="https://raw.githubusercontent.com/zeyadabdulfattah/Sabry-Dental/main/images-posters/2.JPG"
               alt="Masterclass Poster 2"
             />
-            <div class="poster-label">Explore Module</div>
+            <div class="poster-label">استكشف الوحدة</div>
           </div>
           <div class="poster-item">
             <img
               src="https://raw.githubusercontent.com/zeyadabdulfattah/Sabry-Dental/main/images-posters/3.JPG"
               alt="Masterclass Poster 3"
             />
-            <div class="poster-label">Explore Module</div>
+            <div class="poster-label">استكشف الوحدة</div>
           </div>
           <div class="poster-item">
             <img
               src="https://raw.githubusercontent.com/zeyadabdulfattah/Sabry-Dental/main/images-posters/4.JPG"
               alt="Masterclass Poster 4"
             />
-            <div class="poster-label">Explore Module</div>
+            <div class="poster-label">استكشف الوحدة</div>
           </div>
           <div class="poster-item">
             <img
               src="https://raw.githubusercontent.com/zeyadabdulfattah/Sabry-Dental/main/images-posters/5.JPG"
               alt="Masterclass Poster 5"
             />
-            <div class="poster-label">Explore Module</div>
+            <div class="poster-label">استكشف الوحدة</div>
           </div>
           <div class="poster-item">
             <img
               src="https://raw.githubusercontent.com/zeyadabdulfattah/Sabry-Dental/main/images-posters/6.JPG"
               alt="Masterclass Poster 6"
             />
-            <div class="poster-label">Explore Module</div>
+            <div class="poster-label">استكشف الوحدة</div>
           </div>
           <div class="poster-item">
             <img
               src="https://raw.githubusercontent.com/zeyadabdulfattah/Sabry-Dental/main/images-posters/7.JPG"
               alt="Masterclass Poster 7"
             />
-            <div class="poster-label">Explore Module</div>
+            <div class="poster-label">استكشف الوحدة</div>
           </div>
         </div>
       </div>
       <div class="container section-end-cta reveal-up">
-        <a href="#booking" class="btn-cyan smooth-scroll">Book Consultation</a>
+        <a href="#booking" class="btn-cyan smooth-scroll">احجز استشارتك</a>
       </div>
     </section>
 
@@ -1632,24 +1615,22 @@
         <h3
           style="
             color: var(--cyan);
-            font-family: 'Outfit', sans-serif;
-            font-size: 0.9rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
+            font-family: 'Tajawal', sans-serif;
+            font-size: 1rem;
             margin-bottom: 10px;
           "
         >
-          Your Next Step
+          خطوتك القادمة
         </h3>
         <h2
           style="
-            font-size: clamp(2.5rem, 4vw, 4rem);
+            font-size: clamp(2.5rem, 5vw, 4rem);
             color: var(--navy);
-            letter-spacing: -1.5px;
+            line-height: 1.2;
             margin-bottom: 20px;
           "
         >
-          Secure Your <span>Consultation.</span>
+          احجز <span>استشارتك.</span>
         </h2>
 
         <div class="tidycal-container">
@@ -1661,18 +1642,17 @@
 
     <section class="location-section reveal-up" id="location">
       <div class="map-plaque">
-        <h3>The Center of<br />Excellence.</h3>
+        <h3>مركز<br />التميز.</h3>
         <p>
-          Located in the heart of Mansoura, our facility is engineered with
-          state-of-the-art restorative technology and master-crafted clinical
-          suites designed for your ultimate comfort.
+          يقع مركزنا في قلب مدينة المنصورة، وقد تم تجهيزه بأحدث تكنولوجيا
+          الاستعاضة وأجنحة العيادات المصممة خصيصاً لراحتك التامة.
         </p>
         <div style="margin-top: 30px">
           <a
             href="#booking"
             class="btn-cyan smooth-scroll"
             style="color: var(--navy); border-color: var(--navy)"
-            >Book Your Visit</a
+            >احجز زيارتك</a
           >
         </div>
       </div>
@@ -1688,49 +1668,46 @@
     <footer>
       <div class="footer-grid reveal-up">
         <div>
-          <div class="footer-huge">SABRY<br /><span>CENTER</span></div>
+          <div class="footer-huge">مركز<br /><span>صبري</span></div>
           <p
             style="
               color: rgba(255, 255, 255, 0.6);
               max-width: 300px;
-              line-height: 1.6;
+              line-height: 1.8;
             "
           >
-            Elevating the standard of clinical dentistry and implantology in
-            Mansoura.
+            الارتقاء بمعايير طب الأسنان السريري وزراعة الأسنان في المنصورة.
           </p>
         </div>
         <div class="footer-links">
-          <h4>Contact Us</h4>
+          <h4>تواصل معنا</h4>
           <ul>
-            <li><a href="tel:01013333983">✆ 010 1333 3983</a></li>
-            <li><a href="tel:0502508152">✆ 050 250 8152</a></li>
+            <li><a href="tel:01013333983" dir="ltr">✆ +20 101 333 3983</a></li>
+            <li><a href="tel:0502508152" dir="ltr">✆ +20 50 250 8152</a></li>
             <li>
-              <a href="#location" class="smooth-scroll">📍 Mansoura, Egypt</a>
+              <a href="#location" class="smooth-scroll">📍 المنصورة، مصر</a>
             </li>
           </ul>
         </div>
         <div class="footer-links">
-          <h4>Quick Links</h4>
+          <h4>روابط سريعة</h4>
           <ul>
+            <li><a href="#booking" class="smooth-scroll">احجز استشارتك</a></li>
             <li>
-              <a href="#booking" class="smooth-scroll">Book Consultation</a>
+              <a href="#academy" class="smooth-scroll">أكاديمية إمبلانت زون</a>
             </li>
-            <li>
-              <a href="#academy" class="smooth-scroll">Implant Zone Academy</a>
-            </li>
-            <li><a href="#cases" class="smooth-scroll">Clinical Cases</a></li>
+            <li><a href="#cases" class="smooth-scroll">الحالات السريرية</a></li>
           </ul>
         </div>
       </div>
       <div class="footer-bottom">
-        <p>© 2026 Sabry Dental Center. All Rights Reserved.</p>
-        <p>Quality Always Wins.</p>
+        <p>© 2026 مركز صبري لطب الأسنان. جميع الحقوق محفوظة.</p>
+        <p>الجودة تفوز دائماً.</p>
       </div>
     </footer>
 
     <script>
-      // 0. MOBILE MENU LOGIC
+      // 0. MOBILE MENU LOGIC (RTL ADAPTED)
       const mobileMenuBtn = document.getElementById("mobileMenuBtn");
       const mobileCloseBtn = document.getElementById("mobileCloseBtn");
       const mobileMenuOverlay = document.getElementById("mobileMenuOverlay");
@@ -1824,7 +1801,7 @@
         });
       }
 
-      // 6. CINEMATIC INFINITE AUTOSCROLL DRAG LOGIC
+      // 6. CINEMATIC INFINITE AUTOSCROLL DRAG LOGIC (RTL SAFE)
       function createInfiniteSlider(trackId, speed = 1) {
         const track = document.getElementById(trackId);
         if (!track) return;
