@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Outfit:wght@300;400;700;900&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Outfit:wght@300;400;500;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap"
       rel="stylesheet"
     />
 
@@ -82,6 +82,7 @@
         display: flex;
         align-items: center;
         gap: 6px;
+        white-space: nowrap;
       }
       .top-bar-contact a:hover {
         color: var(--cyan);
@@ -148,6 +149,8 @@
         transition: width 0.5s ease, filter 0.5s ease;
         filter: brightness(0) invert(1);
         opacity: 1;
+        position: relative;
+        z-index: 1005;
       }
       .navbar.scrolled .logo img {
         width: 135px;
@@ -223,6 +226,167 @@
       }
       .navbar.scrolled .btn-cyan:hover {
         color: var(--white);
+      }
+
+      /* --- EXECUTIVE MOBILE MENU (REDESIGNED) --- */
+      .menu-toggle {
+        display: none;
+        flex-direction: column;
+        gap: 6px;
+        cursor: pointer;
+        z-index: 1004;
+      }
+      .menu-toggle span {
+        width: 30px;
+        height: 1px;
+        background-color: var(--white);
+        transition: all 0.3s ease;
+      }
+      .navbar.scrolled .menu-toggle span {
+        background-color: var(--navy);
+      }
+
+      .mobile-menu-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: rgba(10, 25, 47, 0.98);
+        backdrop-filter: blur(25px);
+        -webkit-backdrop-filter: blur(25px);
+        z-index: 9999;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 0 clamp(30px, 8vw, 60px);
+        opacity: 0;
+        visibility: hidden;
+        clip-path: circle(0% at 90% 10%);
+        transition: all 0.6s cubic-bezier(0.65, 0, 0.15, 1);
+      }
+      .mobile-menu-overlay.active {
+        opacity: 1;
+        visibility: visible;
+        clip-path: circle(150% at 90% 10%);
+      }
+
+      .mobile-close-btn {
+        position: absolute;
+        top: 40px;
+        right: clamp(30px, 8vw, 60px);
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: transform 0.4s ease;
+      }
+      .mobile-close-btn:hover {
+        transform: rotate(90deg);
+      }
+      .mobile-close-btn span {
+        position: absolute;
+        width: 30px;
+        height: 1.5px;
+        background: var(--white);
+      }
+      .mobile-close-btn span:nth-child(1) {
+        transform: rotate(45deg);
+      }
+      .mobile-close-btn span:nth-child(2) {
+        transform: rotate(-45deg);
+      }
+
+      .mobile-eyebrow {
+        color: var(--cyan);
+        font-family: "Outfit", sans-serif;
+        font-size: 0.85rem;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.4s ease 0.2s;
+      }
+      .mobile-menu-overlay.active .mobile-eyebrow {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .mobile-menu-overlay a.mobile-link {
+        font-family: "Outfit", sans-serif;
+        font-size: clamp(2.2rem, 8vw, 3.5rem);
+        font-weight: 300;
+        color: var(--white);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 15px;
+        opacity: 0;
+        transform: translateX(-40px);
+        transition: all 0.4s var(--transition);
+        display: block;
+        width: 100%;
+      }
+      .mobile-menu-overlay.active a.mobile-link {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      .mobile-menu-overlay.active a.mobile-link:nth-of-type(1) {
+        transition-delay: 0.1s;
+      }
+      .mobile-menu-overlay.active a.mobile-link:nth-of-type(2) {
+        transition-delay: 0.15s;
+      }
+      .mobile-menu-overlay.active a.mobile-link:nth-of-type(3) {
+        transition-delay: 0.2s;
+      }
+      .mobile-menu-overlay.active a.mobile-link:nth-of-type(4) {
+        transition-delay: 0.25s;
+      }
+      .mobile-menu-overlay a.mobile-link:hover {
+        color: var(--cyan);
+        transform: translateX(10px);
+      }
+
+      .mobile-menu-overlay .btn-cyan.mobile-link {
+        margin-top: 15px;
+        font-size: 0.9rem;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 500;
+        letter-spacing: 2px;
+        padding: 16px 35px;
+        width: max-content;
+        transition-delay: 0.3s !important;
+      }
+
+      .mobile-contact-info {
+        margin-top: 40px;
+        padding-top: 40px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.4s ease 0.4s;
+        width: 100%;
+      }
+      .mobile-menu-overlay.active .mobile-contact-info {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .mobile-contact-info a {
+        color: var(--cyan);
+        font-size: 1.2rem;
+        font-weight: 500;
+        margin-bottom: 5px;
+        display: block;
+        font-family: "Montserrat", sans-serif;
+      }
+      .mobile-contact-info p {
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 0.9rem;
+        font-family: "Montserrat", sans-serif;
       }
 
       /* --- 4. CINEMATIC KEN BURNS HERO --- */
@@ -302,20 +466,20 @@
         color: var(--cyan);
         font-family: "Outfit", sans-serif;
         font-weight: 700;
-        font-size: 1rem;
+        font-size: clamp(0.8rem, 2vw, 1rem);
         letter-spacing: 4px;
         text-transform: uppercase;
         margin-bottom: 10px;
       }
       .hero-plaque h1 {
-        font-size: clamp(3.5rem, 6vw, 5.5rem);
+        font-size: clamp(3rem, 7vw, 5.5rem);
         line-height: 1;
         color: var(--white);
         margin-bottom: 20px;
         letter-spacing: -2px;
       }
       .hero-plaque p {
-        font-size: 1.15rem;
+        font-size: clamp(1rem, 2.5vw, 1.15rem);
         color: rgba(255, 255, 255, 0.7);
         line-height: 1.7;
         margin-bottom: 35px;
@@ -342,7 +506,7 @@
       }
       .marquee-track {
         display: flex;
-        gap: 80px;
+        gap: clamp(40px, 8vw, 80px);
         white-space: nowrap;
         animation: marquee 25s linear infinite;
         align-items: center;
@@ -350,7 +514,7 @@
       .marquee-item {
         color: var(--white);
         font-family: "Outfit", sans-serif;
-        font-size: 1.1rem;
+        font-size: clamp(0.9rem, 2vw, 1.1rem);
         font-weight: 300;
         letter-spacing: 2px;
         display: flex;
@@ -374,26 +538,28 @@
       .section-end-cta {
         display: flex;
         justify-content: center;
-        margin-top: 60px;
+        margin-top: clamp(40px, 6vw, 60px);
         padding-bottom: 20px;
       }
-
-      /* --- 6. ADVANCED BEFORE/AFTER SLIDER --- */
-      .transformation-section {
-        padding: 150px 0 80px;
-        background: var(--white);
+      .section-padding {
+        padding: clamp(80px, 12vw, 150px) 0;
       }
       .container {
         max-width: 1400px;
         margin: 0 auto;
-        padding: 0 40px;
+        padding: 0 clamp(20px, 5vw, 40px);
+      }
+
+      /* --- 6. ADVANCED BEFORE/AFTER SLIDER (CINEMATIC ASPECT RATIO FIX) --- */
+      .transformation-section {
+        background: var(--white);
       }
       .section-header {
-        margin-bottom: 80px;
+        margin-bottom: clamp(40px, 8vw, 80px);
         text-align: center;
       }
       .section-header h2 {
-        font-size: clamp(3rem, 5vw, 4.5rem);
+        font-size: clamp(2.5rem, 6vw, 4.5rem);
         line-height: 1;
         letter-spacing: -2px;
         color: var(--navy);
@@ -401,15 +567,18 @@
       .section-header h2 span {
         color: var(--cyan);
       }
+
       .ba-container {
         position: relative;
         width: 100%;
-        max-width: 1100px;
+        max-width: 900px;
         margin: 0 auto;
-        height: 600px;
+        aspect-ratio: 16 / 9; /* Perfect cinematic crop */
+        height: auto;
         border-radius: 0;
         overflow: hidden;
-        box-shadow: 0 40px 80px rgba(10, 25, 47, 0.15);
+        box-shadow: 0 30px 60px rgba(10, 25, 47, 0.12);
+        border: 8px solid var(--white); /* Premium Matte Frame */
       }
       .ba-img {
         position: absolute;
@@ -463,23 +632,30 @@
         cursor: ew-resize;
       }
 
-      /* --- 7. THE ARCHITECTURAL SIGNATURE (SVG KINETIC TRACE) --- */
+      /* --- 7. THE ARCHITECTURAL SIGNATURE --- */
       .signature-section {
-        background: var(--navy);
+        background-image: url("https://raw.githubusercontent.com/zeyadabdulfattah/Sabry-Dental/main/images-doctor/8.JPG");
+        background-size: cover;
+        background-position: center top;
+        background-attachment: fixed;
         color: var(--white);
-        padding: 160px 0;
         overflow: hidden;
         position: relative;
         border-top: 1px solid rgba(255, 255, 255, 0.05);
+        z-index: 1;
+      }
+      .signature-section::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.85);
+        z-index: -1;
       }
       .signature-grid {
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 80px;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: clamp(40px, 8vw, 80px);
         align-items: center;
-        max-width: 1400px;
-        margin: 0 auto;
-        padding: 0 40px;
       }
       .signature-visual {
         position: relative;
@@ -487,47 +663,31 @@
         justify-content: center;
         align-items: center;
         width: 100%;
+        height: clamp(200px, 40vw, 350px);
       }
-      /* The pure SVG implementation */
       .ms-drawn-svg {
         width: 100%;
+        height: 100%;
         max-width: 600px;
         overflow: visible;
-        filter: drop-shadow(0 0 30px rgba(0, 174, 239, 0.15));
       }
-      .ms-drawn-svg text {
+      .ms-text {
         font-family: "Outfit", sans-serif;
-        font-size: 220px;
-        font-weight: 900;
+        font-size: clamp(120px, 20vw, 200px);
+        font-weight: 500;
+        letter-spacing: 5px;
         fill: transparent;
-      }
-      .ms-stroke-base {
-        stroke: rgba(255, 255, 255, 0.05);
-        stroke-width: 2px;
-      }
-      .ms-stroke-anim {
         stroke: var(--cyan);
-        stroke-width: 4px;
-        /* Massive dash array to ensure it covers the entire path of the giant letterforms */
-        stroke-dasharray: 2500;
-        stroke-dashoffset: 2500;
-        animation: traceLetter 4s cubic-bezier(0.2, 0.8, 0.2, 1) infinite
-          alternate;
+        stroke-width: 2.5px;
+        stroke-dasharray: 1400;
+        stroke-dashoffset: 1400;
+        transition: stroke-dashoffset 7s cubic-bezier(0.65, 0, 0.15, 1),
+          fill 2.5s ease-in-out 5s, filter 2.5s ease-in-out 5s;
       }
-
-      @keyframes traceLetter {
-        0% {
-          stroke-dashoffset: 2500;
-          fill: transparent;
-        }
-        70% {
-          stroke-dashoffset: 0;
-          fill: transparent;
-        }
-        100% {
-          stroke-dashoffset: 0;
-          fill: rgba(0, 174, 239, 0.05);
-        }
+      .signature-visual.is-visible .ms-text {
+        stroke-dashoffset: 0;
+        fill: rgba(0, 174, 239, 0.4);
+        filter: drop-shadow(0 0 25px rgba(0, 174, 239, 0.5));
       }
 
       .signature-content .eyebrow {
@@ -539,22 +699,22 @@
         margin-bottom: 20px;
       }
       .signature-content h2 {
-        font-size: clamp(2.5rem, 4vw, 4.5rem);
+        font-size: clamp(2.5rem, 5vw, 4.5rem);
         line-height: 1.1;
         margin-bottom: 30px;
         letter-spacing: -1.5px;
       }
       .signature-content .marketing-text {
-        font-size: 1.1rem;
+        font-size: clamp(1rem, 2vw, 1.1rem);
         color: rgba(255, 255, 255, 0.7);
         line-height: 1.8;
         max-width: 500px;
         margin-bottom: 40px;
+        font-weight: 300;
       }
 
-      /* --- 8. HOVER-REVEAL FILMSTRIP GALLERY (INFINITE) --- */
+      /* --- 8. HOVER-REVEAL FILMSTRIP GALLERY --- */
       .filmstrip-section {
-        padding: 120px 0 80px;
         background: var(--grey);
         color: var(--navy);
         overflow: hidden;
@@ -573,14 +733,13 @@
       }
       .filmstrip-track {
         display: flex;
-        gap: 30px;
+        gap: clamp(15px, 3vw, 30px);
         width: max-content;
         will-change: transform;
       }
       .film-item {
-        min-width: 45vw;
-        max-width: 600px;
-        height: 500px;
+        min-width: clamp(280px, 75vw, 600px);
+        height: clamp(350px, 60vh, 500px);
         border-radius: 0;
         overflow: hidden;
         position: relative;
@@ -612,24 +771,23 @@
       }
       .film-caption {
         position: absolute;
-        bottom: 30px;
-        left: 30px;
+        bottom: clamp(15px, 4vw, 30px);
+        left: clamp(15px, 4vw, 30px);
         background: var(--glass-dark);
         color: var(--white);
-        padding: 12px 25px;
+        padding: 10px 20px;
         font-family: "Outfit", sans-serif;
         font-weight: 700;
         backdrop-filter: blur(10px);
         z-index: 5;
         text-transform: uppercase;
         letter-spacing: 1px;
-        font-size: 0.85rem;
+        font-size: clamp(0.7rem, 2vw, 0.85rem);
         pointer-events: none;
       }
 
-      /* --- 9. THE MASTERCLASS POSTER TRACK (INFINITE 3D PARALLAX) --- */
+      /* --- 9. MASTERCLASS POSTER TRACK --- */
       .posters-section {
-        padding: 150px 0 80px;
         background: var(--navy);
         overflow: hidden;
         color: var(--white);
@@ -652,13 +810,13 @@
       }
       .poster-track-wrapper {
         display: flex;
-        gap: 40px;
+        gap: clamp(20px, 4vw, 40px);
         width: max-content;
         will-change: transform;
       }
       .poster-item {
-        min-width: 350px;
-        height: 500px;
+        min-width: clamp(250px, 60vw, 350px);
+        height: clamp(350px, 60vh, 500px);
         position: relative;
         overflow: hidden;
         transform: rotateY(15deg) scale(0.9);
@@ -704,20 +862,20 @@
 
       /* --- 10. TIDYCAL BOOKING SECTION --- */
       .booking-section {
-        padding: 150px 0;
         background: var(--white);
         text-align: center;
       }
       .tidycal-container {
         max-width: 1000px;
-        margin: 60px auto 0;
-        min-height: 600px;
+        margin: clamp(30px, 6vw, 60px) auto 0;
+        min-height: clamp(400px, 80vh, 600px);
         background: transparent;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: flex-start;
         position: relative;
+        width: 100%;
       }
       .tidycal-embed {
         width: 100%;
@@ -728,8 +886,7 @@
       .location-section {
         position: relative;
         width: 100%;
-        height: 65vh;
-        min-height: 500px;
+        height: clamp(400px, 65vh, 600px);
         background: #000;
         overflow: hidden;
       }
@@ -751,7 +908,7 @@
         background: var(--glass);
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
-        padding: 60px 50px;
+        padding: clamp(30px, 5vw, 60px) clamp(20px, 5vw, 50px);
         max-width: 450px;
         z-index: 10;
         box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
@@ -760,35 +917,35 @@
       }
       .map-plaque h3 {
         color: var(--navy);
-        font-size: 2.2rem;
+        font-size: clamp(1.8rem, 4vw, 2.2rem);
         line-height: 1;
         margin-bottom: 15px;
         letter-spacing: -1px;
       }
       .map-plaque p {
         color: #555;
-        font-size: 1rem;
+        font-size: clamp(0.9rem, 2vw, 1rem);
         line-height: 1.6;
       }
 
       /* --- 12. MEGA FOOTER --- */
       footer {
         background: var(--navy);
-        padding: 120px 40px 40px;
+        padding: clamp(60px, 10vw, 120px) 40px 40px;
         color: var(--white);
       }
       .footer-grid {
         max-width: 1400px;
         margin: 0 auto;
         display: grid;
-        grid-template-columns: 2fr 1fr 1fr;
-        gap: 60px;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: clamp(40px, 6vw, 60px);
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         padding-bottom: 60px;
       }
       .footer-huge {
         font-family: "Outfit", sans-serif;
-        font-size: clamp(3rem, 6vw, 5rem);
+        font-size: clamp(2.5rem, 6vw, 5rem);
         font-weight: 900;
         line-height: 0.9;
         margin-bottom: 20px;
@@ -818,20 +975,23 @@
         max-width: 1400px;
         margin: 30px auto 0;
         display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
         justify-content: space-between;
         color: rgba(255, 255, 255, 0.4);
         font-size: 0.9rem;
+        text-align: center;
       }
 
       /* --- SCROLL ANIMATION CLASSES --- */
       .reveal-up {
         opacity: 0;
-        transform: translateY(80px);
+        transform: translateY(60px);
         transition: 1.2s var(--transition);
       }
       .reveal-left {
         opacity: 0;
-        transform: translateX(-60px);
+        transform: translateX(-40px);
         transition: 1s var(--transition);
       }
       .is-visible {
@@ -839,10 +999,11 @@
         transform: translate(0) scale(1);
       }
 
-      /* --- RESPONSIVE --- */
+      /* --- MASTER RESPONSIVE BREAKPOINTS --- */
       @media (max-width: 1024px) {
         .top-bar {
           padding: 0 20px;
+          font-size: 0.65rem;
         }
         .top-bar-socials span {
           display: none;
@@ -851,12 +1012,20 @@
           display: inline-block;
         }
         .navbar {
-          height: 100px;
+          height: 90px;
           padding: 0 20px;
         }
         .navbar.scrolled {
-          height: 80px;
+          height: 75px;
         }
+        .nav-links,
+        .navbar .btn-cyan {
+          display: none;
+        }
+        .menu-toggle {
+          display: flex;
+        }
+
         .hero-plaque {
           padding: 40px 20px;
           text-align: center;
@@ -864,34 +1033,27 @@
           width: 100%;
           margin: 0 auto;
         }
-        .hero-plaque h1 {
-          font-size: 3rem;
-        }
         .hero-plaque p {
           margin: 0 auto 30px;
         }
+
         .signature-grid {
-          grid-template-columns: 1fr;
           text-align: center;
         }
         .signature-content .marketing-text {
           margin: 0 auto 40px;
         }
-        .ms-drawn-svg text {
-          font-size: 150px;
+        .signature-section {
+          background-attachment: scroll;
         }
-        .film-item {
-          min-width: 85vw;
+
+        /* Mobile B/A Slider ratio fix */
+        .ba-container {
+          border-width: 4px;
+          aspect-ratio: 3 / 2;
+          height: auto;
         }
-        .poster-item {
-          min-width: 280px;
-          height: 400px;
-          transform: rotateY(0) scale(1);
-          filter: grayscale(0);
-        }
-        .nav-links {
-          display: none;
-        }
+
         .map-plaque {
           position: relative;
           left: 0;
@@ -902,8 +1064,26 @@
           border-left: none;
           border-top: 4px solid var(--cyan);
         }
-        .footer-grid {
-          grid-template-columns: 1fr;
+        .footer-bottom {
+          justify-content: center;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .top-bar {
+          display: none;
+        }
+        .navbar {
+          top: 0;
+        }
+        .hero-cinematic {
+          min-height: 100vh;
+        }
+
+        /* Snap to strict 16:9 cinematic crop on tight phones to prevent vertical stretching */
+        .ba-container {
+          aspect-ratio: 16 / 9;
+          height: auto;
         }
       }
     </style>
@@ -1025,7 +1205,36 @@
         <a href="#philosophy" class="smooth-scroll">About</a>
       </div>
       <a href="#booking" class="btn-cyan smooth-scroll">Book Consultation</a>
+
+      <div class="menu-toggle" id="mobileMenuBtn">
+        <span></span><span></span><span></span>
+      </div>
     </nav>
+
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+      <div class="mobile-close-btn" id="mobileCloseBtn">
+        <span></span><span></span>
+      </div>
+
+      <div class="mobile-eyebrow">Menu Navigation</div>
+
+      <a href="#expertise" class="mobile-link smooth-scroll"
+        >Clinical Expertise</a
+      >
+      <a href="#cases" class="mobile-link smooth-scroll">Patient Cases</a>
+      <a href="#academy" class="mobile-link smooth-scroll"
+        >Implant Zone Academy</a
+      >
+      <a href="#philosophy" class="mobile-link smooth-scroll">About</a>
+      <a href="#booking" class="btn-cyan mobile-link smooth-scroll"
+        >Book Consultation</a
+      >
+
+      <div class="mobile-contact-info">
+        <a href="tel:+201013333983">+20 101 333 3983</a>
+        <p>Mansoura, Egypt</p>
+      </div>
+    </div>
 
     <section class="hero-cinematic" id="hero">
       <div class="bg-slider" id="bgSlider">
@@ -1115,7 +1324,7 @@
       </div>
     </div>
 
-    <section class="transformation-section" id="expertise">
+    <section class="transformation-section section-padding" id="expertise">
       <div class="container">
         <div class="section-header text-center reveal-up">
           <h2>The Architecture of a <br /><span>Perfected Smile.</span></h2>
@@ -1164,29 +1373,20 @@
       </div>
     </section>
 
-    <section class="signature-section" id="philosophy">
+    <section class="signature-section section-padding" id="philosophy">
       <div class="signature-grid">
         <div class="signature-visual reveal-left">
           <svg
             class="ms-drawn-svg"
             viewBox="0 0 400 250"
-            preserveAspectRatio="xMidYMid meet"
+            xmlns="http://www.w3.org/2000/svg"
           >
             <text
               x="50%"
-              y="50%"
+              y="55%"
               text-anchor="middle"
               dominant-baseline="central"
-              class="ms-stroke-base"
-            >
-              MS
-            </text>
-            <text
-              x="50%"
-              y="50%"
-              text-anchor="middle"
-              dominant-baseline="central"
-              class="ms-stroke-anim"
+              class="ms-text"
             >
               MS
             </text>
@@ -1212,7 +1412,7 @@
       </div>
     </section>
 
-    <section class="filmstrip-section" id="cases">
+    <section class="filmstrip-section section-padding" id="cases">
       <div class="container">
         <div class="section-header reveal-up">
           <h2>Documented <span>Excellence.</span></h2>
@@ -1283,7 +1483,7 @@
       </div>
     </section>
 
-    <section class="posters-section" id="academy">
+    <section class="posters-section section-padding" id="academy">
       <div class="container">
         <div class="section-header reveal-up">
           <h3
@@ -1369,7 +1569,7 @@
       </div>
     </section>
 
-    <section class="booking-section" id="booking">
+    <section class="booking-section section-padding" id="booking">
       <div class="container reveal-up">
         <h3
           style="
@@ -1472,7 +1672,30 @@
     </footer>
 
     <script>
-      // 0. SMOOTH SCROLLING INTERCEPTOR
+      // 0. MOBILE MENU LOGIC (UPDATED WITH EXPLICIT CLOSE BUTTON)
+      const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+      const mobileCloseBtn = document.getElementById("mobileCloseBtn");
+      const mobileMenuOverlay = document.getElementById("mobileMenuOverlay");
+      const mobileLinks = document.querySelectorAll(".mobile-link");
+
+      function openMenu() {
+        mobileMenuOverlay.classList.add("active");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeMenu() {
+        mobileMenuOverlay.classList.remove("active");
+        document.body.style.overflow = "auto";
+      }
+
+      mobileMenuBtn.addEventListener("click", openMenu);
+      mobileCloseBtn.addEventListener("click", closeMenu);
+
+      mobileLinks.forEach((link) => {
+        link.addEventListener("click", closeMenu);
+      });
+
+      // 1. SMOOTH SCROLLING INTERCEPTOR
       document.querySelectorAll(".smooth-scroll").forEach((anchor) => {
         anchor.addEventListener("click", function (e) {
           const targetId = this.getAttribute("href");
@@ -1481,7 +1704,7 @@
           e.preventDefault();
           const targetEl = document.querySelector(targetId);
           if (targetEl) {
-            const headerOffset = 135;
+            const headerOffset = window.innerWidth <= 1024 ? 90 : 135;
             const elementPosition = targetEl.getBoundingClientRect().top;
             const offsetPosition =
               elementPosition + window.pageYOffset - headerOffset;
@@ -1494,17 +1717,18 @@
         });
       });
 
-      // 1. DYNAMIC NAVBAR SCROLL TRIGGER
+      // 2. DYNAMIC NAVBAR SCROLL TRIGGER
       window.addEventListener("scroll", () => {
         const header = document.getElementById("navbar");
-        if (window.scrollY > 45) {
+        const triggerPoint = window.innerWidth <= 480 ? 10 : 45;
+        if (window.scrollY > triggerPoint) {
           header.classList.add("scrolled");
         } else {
           header.classList.remove("scrolled");
         }
       });
 
-      // 2. HERO BACKGROUND SLIDESHOW (KEN BURNS LOOP)
+      // 3. HERO BACKGROUND SLIDESHOW
       const slides = document.querySelectorAll(".bg-slide");
       let currentSlide = 0;
       setInterval(() => {
@@ -1513,7 +1737,7 @@
         slides[currentSlide].classList.add("active");
       }, 5000);
 
-      // 3. BUTTERY INTERSECTION OBSERVER
+      // 4. INTERSECTION OBSERVER (TRIGGERS DRAW ANIMATION & REVEALS)
       const observerOptions = {
         threshold: 0.15,
         rootMargin: "0px 0px -50px 0px",
@@ -1530,7 +1754,7 @@
         observer.observe(el);
       });
 
-      // 4. ADVANCED BEFORE/AFTER SLIDER LOGIC
+      // 5. ADVANCED BEFORE/AFTER SLIDER
       const baRange = document.getElementById("baRange");
       const baBefore = document.getElementById("baBefore");
       const baHandle = document.getElementById("baHandle");
@@ -1542,7 +1766,7 @@
         });
       }
 
-      // 5. CINEMATIC INFINITE AUTOSCROLL DRAG LOGIC (NO WALLS)
+      // 6. CINEMATIC INFINITE AUTOSCROLL DRAG LOGIC
       function createInfiniteSlider(trackId, speed = 1) {
         const track = document.getElementById(trackId);
         if (!track) return;
@@ -1576,15 +1800,9 @@
         currentX = originalWidth;
 
         function animate() {
-          if (!isDown && !hoverPause) {
-            currentX += speed;
-          }
-
-          if (currentX >= originalWidth * 2) {
-            currentX -= originalWidth;
-          } else if (currentX <= 0) {
-            currentX += originalWidth;
-          }
+          if (!isDown && !hoverPause) currentX += speed;
+          if (currentX >= originalWidth * 2) currentX -= originalWidth;
+          else if (currentX <= 0) currentX += originalWidth;
 
           track.style.transform = `translate3d(-${currentX}px, 0, 0)`;
           animationId = requestAnimationFrame(animate);
@@ -1596,25 +1814,20 @@
           startX = e.pageX;
           cancelAnimationFrame(animationId);
         });
-
         window.addEventListener("mouseup", () => {
           if (!isDown) return;
           isDown = false;
           viewport.style.cursor = "grab";
           animate();
         });
-
         window.addEventListener("mousemove", (e) => {
           if (!isDown) return;
           e.preventDefault();
-          const x = e.pageX;
-          const walk = (startX - x) * 1.5;
+          const walk = (startX - e.pageX) * 1.5;
           currentX += walk;
-          startX = x;
-
+          startX = e.pageX;
           if (currentX >= originalWidth * 2) currentX -= originalWidth;
           if (currentX <= 0) currentX += originalWidth;
-
           track.style.transform = `translate3d(-${currentX}px, 0, 0)`;
         });
 
@@ -1628,28 +1841,35 @@
           }
         });
 
-        viewport.addEventListener("touchstart", (e) => {
-          isDown = true;
-          startX = e.touches[0].pageX;
-          cancelAnimationFrame(animationId);
-        });
+        viewport.addEventListener(
+          "touchstart",
+          (e) => {
+            isDown = true;
+            startX = e.touches[0].pageX;
+            hoverPause = true;
+            cancelAnimationFrame(animationId);
+          },
+          { passive: true }
+        );
         window.addEventListener("touchend", () => {
           if (!isDown) return;
           isDown = false;
+          hoverPause = false;
           animate();
         });
-        window.addEventListener("touchmove", (e) => {
-          if (!isDown) return;
-          const x = e.touches[0].pageX;
-          const walk = (startX - x) * 1.5;
-          currentX += walk;
-          startX = x;
-
-          if (currentX >= originalWidth * 2) currentX -= originalWidth;
-          if (currentX <= 0) currentX += originalWidth;
-
-          track.style.transform = `translate3d(-${currentX}px, 0, 0)`;
-        });
+        window.addEventListener(
+          "touchmove",
+          (e) => {
+            if (!isDown) return;
+            const walk = (startX - e.touches[0].pageX) * 1.5;
+            currentX += walk;
+            startX = e.touches[0].pageX;
+            if (currentX >= originalWidth * 2) currentX -= originalWidth;
+            if (currentX <= 0) currentX += originalWidth;
+            track.style.transform = `translate3d(-${currentX}px, 0, 0)`;
+          },
+          { passive: true }
+        );
 
         animate();
       }
